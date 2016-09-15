@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06D1B313-8EBF-4AFB-ACAE-6A550FA16DD2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StarSystemGeneratorV2</RootNamespace>
+    <AssemblyName>Sigurds Generator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\users\RyanT\Dropbox\Public\SoftwareUpdates\StarSystemGenerator\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>https://dl.dropboxusercontent.com/u/9690967/SoftwareUpdates/StarSystemGenerator/Publish/</InstallUrl>
+    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0F1149699F62B4267665BEADDA1292CD0F372CA5</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>StarSystemGeneratorV2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Sun_Icon_256.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Ship.cs" />
+    <Compile Include="Entity\StarSystems\CelestialObject.cs" />
+    <Compile Include="Entity\StarSystems\HyperspaceGate.cs" />
+    <Compile Include="Entity\StarSystems\NodeObject.cs" />
+    <Compile Include="Entity\StarSystems\Planet.cs" />
+    <Compile Include="Entity\StarSystems\Star.cs" />
+    <Compile Include="Entity\StarSystems\StarSystem.cs" />
+    <Compile Include="Entity\StarSystems\SystemEntity.cs" />
+    <Compile Include="Forms\AttackRollCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AttackRollCalculator.Designer.cs">
+      <DependentUpon>AttackRollCalculator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Changelog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Changelog.Designer.cs">
+      <DependentUpon>Changelog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DiceRoller\DiceHelper.cs" />
+    <Compile Include="DiceRoller\CustomRoll.cs" />
+    <Compile Include="DiceRoller\CustomRollCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiceRoller\CustomRollCreator.Designer.cs">
+      <DependentUpon>CustomRollCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DiceRoller\DiceRoller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiceRoller\DiceRoller.Designer.cs">
+      <DependentUpon>DiceRoller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityControls\DebrisRingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityControls\DebrisRingControl.Designer.cs">
+      <DependentUpon>DebrisRingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityControls\GasGiantControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityControls\GasGiantControl.Designer.cs">
+      <DependentUpon>GasGiantControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityControls\MoonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityControls\MoonControl.Designer.cs">
+      <DependentUpon>MoonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityControls\PlanetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityControls\PlanetControl.Designer.cs">
+      <DependentUpon>PlanetControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityControls\StarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityControls\StarControl.Designer.cs">
+      <DependentUpon>StarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityControls\StarSystemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityControls\StarSystemControl.Designer.cs">
+      <DependentUpon>StarSystemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CelestialObject.cs" />
+    <Compile Include="Entity\Civilization.cs" />
+    <Compile Include="Entity\DebrisRing.cs" />
+    <Compile Include="Entity\EntityEnums.cs" />
+    <Compile Include="Entity\Moon.cs" />
+    <Compile Include="Entity\Planet.cs" />
+    <Compile Include="Entity\Resource.cs" />
+    <Compile Include="Entity\Star.cs" />
+    <Compile Include="Entity\StarSystem.cs" />
+    <Compile Include="Forms\Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Armor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Armor.Designer.cs">
+      <DependentUpon>Armor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentMultiLevelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentMultiLevelControl.Designer.cs">
+      <DependentUpon>ArmorEquipmentMultiLevelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\HandheldWeapons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\HandheldWeapons.Designer.cs">
+      <DependentUpon>HandheldWeapons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ShipResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ShipResults.Designer.cs">
+      <DependentUpon>ShipResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Ships.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Ships.Designer.cs">
+      <DependentUpon>Ships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Mecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Mecha.Designer.cs">
+      <DependentUpon>Mecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\MissileLauncher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\MissileLauncher.Designer.cs">
+      <DependentUpon>MissileLauncher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\NPCEncounterGen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\NPCEncounterGen.Designer.cs">
+      <DependentUpon>NPCEncounterGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Ships2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\Ships2.Designer.cs">
+      <DependentUpon>Ships2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SystemGeneratorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SystemGeneratorForm.Designer.cs">
+      <DependentUpon>SystemGeneratorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Randomize.cs" />
+    <Compile Include="Entity\NodeObject.cs" />
+    <Compile Include="Forms\SpecialGens\VehicleWeapon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\VehicleWeapon.Designer.cs">
+      <DependentUpon>VehicleWeapon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialWeightCost.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Forms\ResourceCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ResourceCalc.Designer.cs">
+      <DependentUpon>ResourceCalc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaveLoad\ExportHTML.cs" />
+    <Compile Include="SaveLoad\SaveData.cs" />
+    <Compile Include="Entity\StarTypeModifiers.cs" />
+    <Compile Include="t.cs" />
+    <EmbeddedResource Include="Forms\AttackRollCalculator.resx">
+      <DependentUpon>AttackRollCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Changelog.resx">
+      <DependentUpon>Changelog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiceRoller\CustomRollCreator.resx">
+      <DependentUpon>CustomRollCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiceRoller\DiceRoller.resx">
+      <DependentUpon>DiceRoller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityControls\DebrisRingControl.resx">
+      <DependentUpon>DebrisRingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityControls\GasGiantControl.resx">
+      <DependentUpon>GasGiantControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityControls\MoonControl.resx">
+      <DependentUpon>MoonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityControls\PlanetControl.resx">
+      <DependentUpon>PlanetControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityControls\StarControl.resx">
+      <DependentUpon>StarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityControls\StarSystemControl.resx">
+      <DependentUpon>StarSystemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\Armor.resx">
+      <DependentUpon>Armor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentMultiLevelControl.resx">
+      <DependentUpon>ArmorEquipmentMultiLevelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\HandheldWeapons.resx">
+      <DependentUpon>HandheldWeapons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\ShipResults.resx">
+      <DependentUpon>ShipResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\Ships.resx">
+      <DependentUpon>Ships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\Mecha.resx">
+      <DependentUpon>Mecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\MissileLauncher.resx">
+      <DependentUpon>MissileLauncher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\NPCEncounterGen.resx">
+      <DependentUpon>NPCEncounterGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\Ships2.resx">
+      <DependentUpon>Ships2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SystemGeneratorForm.resx">
+      <DependentUpon>SystemGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\VehicleWeapon.resx">
+      <DependentUpon>VehicleWeapon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Forms\ResourceCalc.resx">
+      <DependentUpon>ResourceCalc.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="StarSystemGeneratorV2_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sun_Icon_256.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entity\Objects\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
