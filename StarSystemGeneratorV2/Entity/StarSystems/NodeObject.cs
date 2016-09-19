@@ -13,18 +13,14 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 		internal SystemEntity BaseEntity;
 		internal TreeNode Node;
 
-		Color ThisNodeColor = Color.Empty;
-
-		internal NodeObject(SystemEntity BaseO, string Name, Color color)
-		{
+		internal NodeObject(SystemEntity BaseO, string Name)
+		{			
 			BaseEntity = BaseO;
 			Node = new TreeNode();
 
 			Node.Name = Name;
 			Node.Text = Name;
 			Node.Tag = this;
-
-			ThisNodeColor = color;
 		}
 	}
 }

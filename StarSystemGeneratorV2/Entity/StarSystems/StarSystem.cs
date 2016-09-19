@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StarSystemGeneratorV2.Generator;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
@@ -30,27 +31,39 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 			}
 		}
 
+		internal NodeObject _Node = null;
 		internal override NodeObject Node
 		{
 			get
 			{
-				NodeObject no = new NodeObject(this, "Star System " + _SystemNumber, Color.Empty);
-
-				foreach(SystemEntity se in ChildEntities)
+				if (_Node == null)
 				{
-					no.Node.Nodes.Add(se.Node.Node);
+					NodeObject no = new NodeObject(this, "System " + _SystemNumber + " " + StarSystemType.ToString());
+
+					List<NodeObject> BaseObjects = new List<NodeObject>();
+
+					foreach (SystemEntity se in ChildEntities)
+					{
+						if (se.EntityType == EntityTypes.HyperspaceGate) //Hyperspace gates get added first!
+						{
+							no.Node.Nodes.Add(se.Node.Node);
+						}
+						else
+						{
+							BaseObjects.Add(se.Node); //Other entities, should only be stars
+						}
+					}
+
+					//Stars
+					foreach (NodeObject basenode in BaseObjects)
+					{
+						no.Node.Nodes.Add(basenode.Node);
+					}
+
+					_Node = no;
+					return no;
 				}
-
-				return no;
-			}
-		}
-
-		List<SystemEntity> _ChildEntities = new List<SystemEntity>();
-		internal override List<SystemEntity> ChildEntities
-		{
-			get
-			{
-				return _ChildEntities;
+				else return _Node;
 			}
 		}
 
@@ -71,6 +84,8 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				_SystemNumber = sysNumber;
 			}
 
+			Generator._GenVersion = _VersionNumber;
+
 			Generate();
 
 			StarSystems.Add(this);
@@ -80,6 +95,8 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 		{
 			int tvNum = VersionNumber;
 			if (tvNum < 29) tvNum = 29;
+
+			StarSystemType = Generator.StarSystemType();
 
 			switch(tvNum)
 			{
@@ -104,8 +121,6 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 
 		void GenerateStars()
 		{
-			StarSystemType = Generator.StarSystemType();
-
 			int StarCount = (int)StarSystemType;
 
 			for (int i = 0; i < StarCount; i++)

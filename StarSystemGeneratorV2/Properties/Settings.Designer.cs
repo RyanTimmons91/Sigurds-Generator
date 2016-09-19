@@ -12,7 +12,7 @@ namespace StarSystemGeneratorV2.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -43,6 +43,54 @@ namespace StarSystemGeneratorV2.Properties {
             }
             set {
                 this["CustomDieRolls"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("VehicleMaterials.SigDF")]
+        public string VehicleMaterialFilename {
+            get {
+                return ((string)(this["VehicleMaterialFilename"]));
+            }
+            set {
+                this["VehicleMaterialFilename"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\Configs\\")]
+        public string ConfigDirectory {
+            get {
+                return ((string)(this["ConfigDirectory"]));
+            }
+            set {
+                this["ConfigDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("~~-~~")]
+        public string ConfigDelimeter {
+            get {
+                return ((string)(this["ConfigDelimeter"]));
+            }
+            set {
+                this["ConfigDelimeter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("--~--")]
+        public string VariableDelimeter {
+            get {
+                return ((string)(this["VariableDelimeter"]));
+            }
+            set {
+                this["VariableDelimeter"] = value;
             }
         }
     }

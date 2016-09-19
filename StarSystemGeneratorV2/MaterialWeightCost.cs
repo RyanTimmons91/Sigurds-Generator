@@ -11,7 +11,7 @@ namespace StarSystemGeneratorV2
 	{
 		internal static List<VehicleMaterial> VehicleMaterials = new List<VehicleMaterial>()
 		{
-			new VehicleMaterial(0, "Semi-Liquic Nanno-Carbons", .225m, 100, true, "Water Vehicles", 3),
+			new VehicleMaterial(0, "Semi-Liquid Nanno-Carbons", .225m, 100, true, "Water Vehicles", 3),
 			new VehicleMaterial(1, "Nanno-Pore", .9m, 110, false, "Water Vehicles", 4),
 			new VehicleMaterial(2, "Nanno-Tex", .3m, 155, false, "Any Vehicles", 5),
 			new VehicleMaterial(3, "Laminated Steel", 6.25m, 50, false, "Civilian Vehicles", 6),
@@ -34,6 +34,7 @@ namespace StarSystemGeneratorV2
 		int ID;
 		internal string name;
 		internal bool isCoating;
+
 		internal decimal weight; //In Metric Tons
 		internal int cost;
 		internal string use;
@@ -99,6 +100,7 @@ namespace StarSystemGeneratorV2
 	{
 		internal int ID;
 		internal string Name;
+
 		internal decimal DD;
 		internal decimal DEF;
 		internal decimal Weight;

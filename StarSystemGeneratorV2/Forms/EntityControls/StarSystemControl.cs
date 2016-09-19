@@ -26,11 +26,11 @@ namespace StarSystemGeneratorV2.EntityControls
 
 			foreach(SystemEntity se in s.ChildEntities)
 			{
-				if(se.EntityType == Entity.EntityTypes.HyperspaceGate)
+				if(se.EntityType == EntityTypes.HyperspaceGate)
 				{
 					_HSGBox.Text = ((HyperspaceGate)se).GateType.ToString();
 				}
-				else if(se.EntityType == Entity.EntityTypes.Star)
+				else if(se.EntityType == EntityTypes.Star)
 				{
 					//Planets += st.Planets.Length; //All Planets
 

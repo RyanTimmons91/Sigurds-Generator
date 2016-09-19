@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StarSystemGeneratorV2.Entity;
 
 namespace StarSystemGeneratorV2.SaveLoad
 {
-	class ExportHTML
+	static class LoadVariableInfo
 	{
-		
+		internal static void LoadBaseData()
+		{
+			
+		}
+		internal static void LoadMaterials()
+		{
+
+		}
 	}
 }

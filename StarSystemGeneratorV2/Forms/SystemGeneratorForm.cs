@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Xml;
 
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 using StarSystemGeneratorV2.Generator;
 
 namespace StarSystemGeneratorV2
@@ -21,7 +21,6 @@ namespace StarSystemGeneratorV2
 		internal static DiceRollerForm DiceRollerFormObject = new DiceRollerForm();
 
 		Version v;
-		bool BlinkWarning = false;
 
 		public SystemGeneratorForm()
 		{
@@ -30,21 +29,6 @@ namespace StarSystemGeneratorV2
 			v = GetPublishedVersion();
 
 			this.Text = this.Text + " Version " + v.ToString();
-		}
-
-		public static Version GetPublishedVersion()
-		{
-			XmlDocument xmlDoc = new XmlDocument();
-			Assembly asmCurrent = System.Reflection.Assembly.GetExecutingAssembly();
-			string executePath = new Uri(asmCurrent.GetName().CodeBase).LocalPath;
-
-			xmlDoc.Load(executePath + ".manifest");
-			string retval = string.Empty;
-			if (xmlDoc.HasChildNodes)
-			{
-				retval = xmlDoc.ChildNodes[1].ChildNodes[0].Attributes.GetNamedItem("version").Value.ToString();
-			}
-			return new Version(retval);
 		}
 
 		internal void GenerateSystem()
@@ -62,85 +46,88 @@ namespace StarSystemGeneratorV2
 
 			int treeNodeNumber = _systemTreeView.Nodes.Add(GeneratedSystem.Node.Node);
 			_systemTreeView.SelectedNode = _systemTreeView.Nodes[treeNodeNumber];
-		}
-		
-		private void SystemGeneratorForm_Load(object sender, EventArgs e)
-		{
-			UpdateVersionAlert();
+			GeneratedSystem.Colorize();
 		}
 
-		private void _testButton_Click(object sender, EventArgs e)
+		//Actions
+		private void _systemTreeView_AfterSelect(object sender, TreeViewEventArgs e)
 		{
-			GenerateSystem();
-		}
-		
-		private void _randomTest_Click(object sender, EventArgs e)
-		{
-			Randomize Generate = new Randomize();
-			DiceHelper DH = Generate.diceHelper;
+			ClearSystemInfo(); //Clear the Selected System in Dock and the System number
 
-			Dictionary<ResourceTypes, int> ResourceCheck = new Dictionary<ResourceTypes, int>();
-
-			for(int i = 0; i < 20000; i++)
+			if (e.Node.Tag == null)
 			{
-				Console.WriteLine("Iteration " + i);
-				ResourceTypes RT = Generate.ResourceType();
-
-				if (ResourceCheck.ContainsKey(RT))
+				//Should only hit this when we have a 'group' node selected (Resources, Celestial Objects, etc)
+				
+				TreeNode node = e.Node;
+				while(node.Tag == null)
 				{
-					ResourceCheck[RT] += 1;
+					if (node.Parent == null) break;
+					node = node.Parent;
+				}
+
+				if(node.Tag == null)
+				{
+					//Still not found, this should never happen!
 				}
 				else
 				{
-					ResourceCheck.Add(RT, 1);
+					_globalSystemNumber.Text = ((Entity.StarSystems.NodeObject)node.Tag).BaseEntity.SystemNumber + "";
 				}
 			}
-
-			string s = "";
-
-			foreach (KeyValuePair<ResourceTypes, int> KV in ResourceCheck)
+			else
 			{
-				s +=  KV.Key + " " + KV.Value + Environment.NewLine;
-			}
-			
-			MessageBox.Show(s);
-		}
-
-		private void _systemTreeView_AfterSelect(object sender, TreeViewEventArgs e)
-		{
-			ClearSystemInfo();
-
-			if (e.Node.Tag != null)
-			{
+				//We have a Node Tag, so we might be able to display an Entity
 				Entity.StarSystems.NodeObject NO = (Entity.StarSystems.NodeObject)e.Node.Tag;
 
 				_globalSystemNumber.Text = NO.BaseEntity.SystemNumber + "";
 
-				if (NO.BaseEntity.EntityType == EntityTypes.StarSystem)
+				switch(NO.BaseEntity.EntityType)
 				{
-					EntityControls.StarSystemControl MC = new EntityControls.StarSystemControl(NO.BaseEntity);
-
-					_dynamicPanel.Controls.Add(MC);
-
-					MC.Dock = DockStyle.Fill;
-					return;
+					case EntityTypes.StarSystem:
+						EntityControls.StarSystemControl SSC = new EntityControls.StarSystemControl(NO.BaseEntity);
+						_dynamicPanel.Controls.Add(SSC);
+						SSC.Dock = DockStyle.Fill;
+						return;
+					case EntityTypes.Star:
+						EntityControls.StarControl SC = new EntityControls.StarControl(NO.BaseEntity);
+						_dynamicPanel.Controls.Add(SC);
+						SC.Dock = DockStyle.Fill;
+						return;
+					case EntityTypes.Planet:
+						EntityControls.PlanetControl PC = new EntityControls.PlanetControl(NO.BaseEntity);
+						_dynamicPanel.Controls.Add(PC);
+						PC.Dock = DockStyle.Fill;
+						return;
+					case EntityTypes.GasGiant:
+						EntityControls.GasGiantControl GGC = new EntityControls.GasGiantControl(NO.BaseEntity);
+						_dynamicPanel.Controls.Add(GGC);
+						GGC.Dock = DockStyle.Fill;
+						return;
+					case EntityTypes.Moon:
+						EntityControls.MoonControl MC = new EntityControls.MoonControl(NO.BaseEntity);
+						_dynamicPanel.Controls.Add(MC);
+						MC.Dock = DockStyle.Fill;
+						return;
+					default:
+						return;
 				}
 			}
 
 			ClearSystemInfo();
 		}
 
-		private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+		//Buttons
+		private void _GenerateButton_Click(object sender, EventArgs e)
 		{
-			new Changelog().ShowDialog();
+			GenerateSystem();
+		}
+		private void _0SystemNumber_Click(object sender, EventArgs e)
+		{
+			_seedBox.Value = 0;
+			GenerateSystem();
 		}
 
-		private void clearToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			ClearSystemInfo();
-			ClearSystemList();
-		}
-
+		//Helper Functions
 		void ClearSystemList()
 		{
 			_systemTreeView.Nodes.Clear();
@@ -150,93 +137,113 @@ namespace StarSystemGeneratorV2
 			_dynamicPanel.Controls.Clear();
 			_globalSystemNumber.Text = "";
 		}
-
-		private void _0SystemNumber_Click(object sender, EventArgs e)
+		public static Version GetPublishedVersion()
 		{
-			_seedBox.Value = 0;
-			GenerateSystem();
+			XmlDocument xmlDoc = new XmlDocument();
+			Assembly asmCurrent = System.Reflection.Assembly.GetExecutingAssembly();
+			string executePath = new Uri(asmCurrent.GetName().CodeBase).LocalPath;
+
+			xmlDoc.Load(executePath + ".manifest");
+			string retval = string.Empty;
+			if (xmlDoc.HasChildNodes)
+			{
+				retval = xmlDoc.ChildNodes[1].ChildNodes[0].Attributes.GetNamedItem("version").Value.ToString();
+			}
+			return new Version(retval);
 		}
 
+		
+		#region Menu
+		private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new Changelog().ShowDialog();
+		}
+		private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ClearSystemInfo();
+			ClearSystemList();
+		}
 		private void _diceRoller_Click(object sender, EventArgs e)
 		{
 			DiceRollerFormObject.Show();
 		}
+		#endregion
 
-		private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Options opt = new Options();
-			opt.ShowDialog();
-			UpdateVersionAlert();
-		}
-
+		#region SpecialGenButtons
 		private void resourceCostToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new ResourceCalc().Show();
 		}
-
 		private void weaponCostToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.WeaponCost().Show();
 		}
-		
-		void UpdateVersionAlert()
-		{
-			int propVer = Properties.Settings.Default.GeneratorVersion;
-
-			if (propVer != v.MinorRevision)
-			{
-				_versionText.BackColor = Color.Salmon;
-				BlinkWarning = true;
-			}
-			else
-			{
-				_versionText.BackColor = SystemColors.Control;
-				BlinkWarning = false;
-			}
-
-			_versionText.Text = "Using Version " + propVer;
-		}
-
-		private void _blinkWarning_Tick(object sender, EventArgs e)
-		{
-			if(BlinkWarning)
-			{
-				_versionText.Visible = !_versionText.Visible;
-			}
-			else
-			{
-				_versionText.Visible = true;
-			}
-		}
-
 		private void mechaWeightCostToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.SpecialGens.Mecha().Show();
 		}
-
 		private void handheldWeaponsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.SpecialGens.HandheldWeapons().Show();
 		}
-
 		private void armorToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.SpecialGens.Armor().Show();
 		}
-
 		private void missileLaunchersToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.SpecialGens.MissileLauncher().Show();
 		}
-
 		private void nPCEncountersToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.SpecialGens.NPCEncounterGen().Show();
 		}
-
 		private void shipsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new Forms.SpecialGens.Ships().Show();
 		}
+		#endregion
+
+		private void _highlightComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			HighlightTypes highlightTypes = (HighlightTypes)_highlightComboBox.SelectedIndex;
+
+			//Reset to none
+			SystemEntity.HighlightType = HighlightTypes.None;
+			UpdateHighlighting();
+
+			//Apply current Colors
+			SystemEntity.HighlightType = highlightTypes;
+			UpdateHighlighting();
+
+
+			//StarSystem[] SS = new StarSystem[_systemTreeView.Nodes.Count];
+
+			//for(int i = 0; i < SS.Length; i++)
+			//{
+			//	NodeObject n = (NodeObject)_systemTreeView.Nodes[i].Tag;
+			//	SS[i] = (StarSystem)n.BaseEntity;
+			//}
+
+			//ClearSystemInfo();
+			//ClearSystemList();
+
+			//foreach(StarSystem ss in SS)
+			//{
+			//	_systemTreeView.Nodes.Add(ss.Node.Node);
+			//	ss.Colorize();
+			//}
+		}
+		void UpdateHighlighting()
+		{
+			StarSystem[] SS = new StarSystem[_systemTreeView.Nodes.Count];
+
+			for (int i = 0; i < SS.Length; i++)
+			{
+				NodeObject n = (NodeObject)_systemTreeView.Nodes[i].Tag;
+				((StarSystem)n.BaseEntity).Colorize();
+			}
+		}
+
 	}
 }

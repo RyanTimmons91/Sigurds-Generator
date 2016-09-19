@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
@@ -13,31 +14,57 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 		{
 			get { return EntityTypes.Star; }
 		}
+
+		internal NodeObject _Node = null;
 		internal override NodeObject Node
 		{
 			get
 			{
-				NodeObject no = new NodeObject(this, "Star " + StarType.ToString() + " " + NumberOfPlanets, Color.Empty);
-
-				foreach(SystemEntity se in ChildEntities)
+				if (_Node == null)
 				{
-					no.Node.Nodes.Add(se.Node.Node);
+					NodeObject no = new NodeObject(this, "Star " + StarType.ToString() + " " + NumberOfPlanets);
+
+					List<NodeObject> CelestialEntities = new List<NodeObject>();
+					List<NodeObject> BaseEntities = new List<NodeObject>();
+
+					foreach (SystemEntity se in ChildEntities)
+					{
+						if (se.EntityType == EntityTypes.HyperspaceGate)
+						{
+							no.Node.Nodes.Add(se.Node.Node);
+						}
+						else if (se.EntityType == EntityTypes.CelestialObject)
+						{
+							CelestialEntities.Add(se.Node);
+						}
+						else
+						{
+							BaseEntities.Add(se.Node);
+						}
+					}
+
+					if (CelestialEntities.Count > 0)
+					{
+						TreeNode cesnodes = no.Node.Nodes.Add("Celestial Objects");
+						foreach (NodeObject cesnode in CelestialEntities)
+						{
+							cesnodes.Nodes.Add(cesnode.Node);
+						}
+					}
+
+					foreach (NodeObject basenode in BaseEntities)
+					{
+						no.Node.Nodes.Add(basenode.Node);
+					}
+
+					_Node = no;
+					return no;
 				}
-
-				return no;
+				else return _Node;
 			}
 		}
-
-		List<SystemEntity> _ChildEntities = new List<SystemEntity>();
-		internal override List<SystemEntity> ChildEntities
-		{
-			get
-			{
-				return _ChildEntities;
-			}
-		}
-
-		StarTypes StarType;
+		
+		internal StarTypes StarType;
 		SystemSizeTypes StarSystemSize;
 		int NumberOfPlanets = 0;
 
@@ -123,7 +150,7 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 
 			for (int i = 0; i < NumberOfPlanets; i++)
 			{
-				_ChildEntities.Add(new Planet(this));
+				ChildEntities.Add(new Planet(this));
 			}
 		}
 

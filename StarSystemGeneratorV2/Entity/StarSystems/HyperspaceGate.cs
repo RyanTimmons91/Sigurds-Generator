@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
@@ -13,23 +14,28 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 		{
 			get { return EntityTypes.HyperspaceGate; }
 		}
+
+		internal NodeObject _Node = null;
 		internal override NodeObject Node
 		{
 			get
 			{
-				return new NodeObject(this, "HSG: " + GateType.ToString(), Color.Empty);
+				if (_Node == null)
+				{
+					NodeObject no = new NodeObject(this, "HSG: " + GateType.ToString());
+
+					foreach (SystemEntity se in ChildEntities)
+					{
+						no.Node.Nodes.Add(se.Node.Node);
+					}
+
+					_Node = no;
+					return no;
+				}
+				else return _Node;
 			}
 		}
-
-		List<SystemEntity> _ChildEntities = new List<SystemEntity>();
-		internal override List<SystemEntity> ChildEntities
-		{
-			get
-			{
-				return _ChildEntities;
-			}
-		}
-
+		
 		internal HyperSpaceGateTypes GateType;
 
 		internal HyperspaceGate(SystemEntity parent)

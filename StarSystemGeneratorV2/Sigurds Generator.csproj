@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{06D1B313-8EBF-4AFB-ACAE-6A550FA16DD2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StarSystemGeneratorV2</RootNamespace>
     <AssemblyName>Sigurds Generator</AssemblyName>
@@ -23,8 +23,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://dl.dropboxusercontent.com/u/9690967/SoftwareUpdates/StarSystemGenerator/Publish/</InstallUrl>
-    <ApplicationRevision>30</ApplicationRevision>
-    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
+    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -85,14 +85,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\DataTypes\DataEntity.cs" />
+    <Compile Include="Entity\DataTypes\VehicleMaterial.cs" />
+    <Compile Include="Entity\DataTypes\DataTypeEnum.cs" />
+    <Compile Include="Entity\Objects\ObjectEntity.cs" />
     <Compile Include="Entity\Ship.cs" />
     <Compile Include="Entity\StarSystems\CelestialObject.cs" />
+    <Compile Include="Entity\StarSystems\Civilization.cs" />
+    <Compile Include="Entity\StarSystems\DebrisRing.cs" />
     <Compile Include="Entity\StarSystems\HyperspaceGate.cs" />
+    <Compile Include="Entity\StarSystems\Moon.cs" />
     <Compile Include="Entity\StarSystems\NodeObject.cs" />
     <Compile Include="Entity\StarSystems\Planet.cs" />
+    <Compile Include="Entity\StarSystems\Resource.cs" />
+    <Compile Include="Entity\StarSystems\ResourceSector.cs" />
     <Compile Include="Entity\StarSystems\Star.cs" />
     <Compile Include="Entity\StarSystems\StarSystem.cs" />
+    <Compile Include="Entity\StarSystems\StarTypeModifiers.cs" />
     <Compile Include="Entity\StarSystems\SystemEntity.cs" />
+    <Compile Include="Entity\StarSystems\UniquePlanetaryAspects.cs" />
     <Compile Include="Forms\AttackRollCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,12 +129,6 @@
     </Compile>
     <Compile Include="DiceRoller\DiceRoller.Designer.cs">
       <DependentUpon>DiceRoller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EntityControls\DebrisRingControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\EntityControls\DebrisRingControl.Designer.cs">
-      <DependentUpon>DebrisRingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EntityControls\GasGiantControl.cs">
       <SubType>UserControl</SubType>
@@ -155,21 +160,7 @@
     <Compile Include="Forms\EntityControls\StarSystemControl.Designer.cs">
       <DependentUpon>StarSystemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entity\CelestialObject.cs" />
-    <Compile Include="Entity\Civilization.cs" />
-    <Compile Include="Entity\DebrisRing.cs" />
-    <Compile Include="Entity\EntityEnums.cs" />
-    <Compile Include="Entity\Moon.cs" />
-    <Compile Include="Entity\Planet.cs" />
-    <Compile Include="Entity\Resource.cs" />
-    <Compile Include="Entity\Star.cs" />
-    <Compile Include="Entity\StarSystem.cs" />
-    <Compile Include="Forms\Options.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Options.Designer.cs">
-      <DependentUpon>Options.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Entity\StarSystems\EntityEnums.cs" />
     <Compile Include="Forms\SpecialGens\Armor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,7 +222,6 @@
       <DependentUpon>SystemGeneratorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\Randomize.cs" />
-    <Compile Include="Entity\NodeObject.cs" />
     <Compile Include="Forms\SpecialGens\VehicleWeapon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,9 +238,8 @@
       <DependentUpon>ResourceCalc.cs</DependentUpon>
     </Compile>
     <Compile Include="SaveLoad\ExportHTML.cs" />
+    <Compile Include="SaveLoad\LoadVariableInfo.cs" />
     <Compile Include="SaveLoad\SaveData.cs" />
-    <Compile Include="Entity\StarTypeModifiers.cs" />
-    <Compile Include="t.cs" />
     <EmbeddedResource Include="Forms\AttackRollCalculator.resx">
       <DependentUpon>AttackRollCalculator.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,9 +251,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DiceRoller\DiceRoller.resx">
       <DependentUpon>DiceRoller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EntityControls\DebrisRingControl.resx">
-      <DependentUpon>DebrisRingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EntityControls\GasGiantControl.resx">
       <DependentUpon>GasGiantControl.cs</DependentUpon>
@@ -280,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EntityControls\StarSystemControl.resx">
       <DependentUpon>StarSystemControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Options.resx">
-      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpecialGens\Armor.resx">
       <DependentUpon>Armor.cs</DependentUpon>
@@ -365,9 +348,7 @@
   <ItemGroup>
     <Content Include="Sun_Icon_256.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\Objects\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 namespace StarSystemGeneratorV2.EntityControls
 {
@@ -16,24 +15,24 @@ namespace StarSystemGeneratorV2.EntityControls
 	{
 		Moon moon;
 
-		internal MoonControl(Entity.Moon m)
+		internal MoonControl(SystemEntity se)
 		{
 			InitializeComponent();
 
-			moon = m;
+			Moon moon = (Moon)se;
 
-			_sizeBox.Text = m.Size.ToString();
-			_atmosphereBox.Text = m.entityAtmosphere + " was " + m.originalAtmosphere;
-			_tempBox.Text = m.entityTemperature + " was " + m.originalTemperature;
-			_ecologyBox.Text = m.entityEcology.ToString();
+			_sizeBox.Text = moon.Size.ToString();
+			_atmosphereBox.Text = moon.entityAtmosphere_Final.ToString();
+			_tempBox.Text = moon.entityTemperature_Final.ToString();
+			_ecologyBox.Text = moon.entityEcology.ToString();
 
-			_livingBox.Text = m.LivingCivilization.ToString();
-			_lostBox.Text = m.LostCivilization.ToString() + " " + m.LostCivIntactPercentage + "% intact";
+			//_livingBox.Text = m.LivingCivilization.ToString();
+			//_lostBox.Text = m.LostCivilization.ToString() + " " + m.LostCivIntactPercentage + "% intact";
 
-			foreach (Resource R in m.Resources)
-			{
-				_resourcesBox.Items.Add(R);
-			}
+			//foreach (Resource R in m.Resources)
+			//{
+			//	_resourcesBox.Items.Add(R);
+			//}
 
 		}
 	}

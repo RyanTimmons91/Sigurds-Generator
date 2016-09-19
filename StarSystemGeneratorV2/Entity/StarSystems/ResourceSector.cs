@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
-	class CelestialObject : SystemEntity
+	class ResourceSector : SystemEntity
 	{
 		internal override EntityTypes EntityType
 		{
-			get { return EntityTypes.CelestialObject; }
+			get { return EntityTypes.ResourceSector; }
 		}
 
 		internal NodeObject _Node = null;
@@ -22,7 +22,7 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 			{
 				if (_Node == null)
 				{
-					NodeObject no = new NodeObject(this, "Cel.Obj. " + Type.ToString() + TextString);
+					NodeObject no = new NodeObject(this, "Sector " + SectorNumber);
 
 					foreach (SystemEntity se in ChildEntities)
 					{
@@ -35,25 +35,29 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				else return _Node;
 			}
 		}
-		
-		CelestialBodyTypes Type;
-		string TextString = "";
 
-		internal CelestialObject(SystemEntity parent, CelestialBodyTypes type)
+		internal int SectorNumber;
+
+		internal ResourceSector(SystemEntity parent, int number)
 		{
 			ParentEntity = parent;
-			Type = type;
 
-			if(Type == CelestialBodyTypes.WormholeJunction && VersionNumber >= 30) //We generate the number of wormholes after version 30
-			{
-				int count = Generator.diceHelper.D20();
-				TextString = " " + count;
-			}
+			SectorNumber = number;
+
+			Generate();
 		}
 
 		internal override void Generate()
 		{
-			throw new NotImplementedException();
+			int NumberOfResource = Generator.NumberOfResources();
+
+			for(int i = 0; i < NumberOfResource; i++)
+			{
+				DepositTypes DT = Generator.DepositType();
+				if (DT == DepositTypes.None) continue;
+
+				ChildEntities.Add(new Resource(this, DT));
+			}
 		}
 	}
 }

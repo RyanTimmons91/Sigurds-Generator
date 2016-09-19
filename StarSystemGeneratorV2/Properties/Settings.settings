@@ -8,5 +8,17 @@
     <Setting Name="CustomDieRolls" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="VehicleMaterialFilename" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VehicleMaterials.SigDF</Value>
+    </Setting>
+    <Setting Name="ConfigDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Configs\</Value>
+    </Setting>
+    <Setting Name="ConfigDelimeter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">~~-~~</Value>
+    </Setting>
+    <Setting Name="VariableDelimeter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">--~--</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

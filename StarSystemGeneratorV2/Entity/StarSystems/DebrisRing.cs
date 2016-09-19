@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
-	class CelestialObject : SystemEntity
+	class DebrisRing : SystemEntity
 	{
 		internal override EntityTypes EntityType
 		{
-			get { return EntityTypes.CelestialObject; }
+			get { return EntityTypes.DebrisRing; }
 		}
 
 		internal NodeObject _Node = null;
@@ -22,7 +22,7 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 			{
 				if (_Node == null)
 				{
-					NodeObject no = new NodeObject(this, "Cel.Obj. " + Type.ToString() + TextString);
+					NodeObject no = new NodeObject(this, "Deb.Ring " + SizeText);
 
 					foreach (SystemEntity se in ChildEntities)
 					{
@@ -35,25 +35,43 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				else return _Node;
 			}
 		}
-		
-		CelestialBodyTypes Type;
-		string TextString = "";
 
-		internal CelestialObject(SystemEntity parent, CelestialBodyTypes type)
+		PlanetMoonSizes Size;
+		string SizeText
+		{
+			get
+			{
+				if(Size == PlanetMoonSizes.ThinDebrisRing)
+				{
+					return "Thin";
+				}
+				else
+				{
+					return "Thick";
+				}
+			}
+		}
+
+		internal DebrisRing(SystemEntity parent, PlanetMoonSizes size)
 		{
 			ParentEntity = parent;
-			Type = type;
 
-			if(Type == CelestialBodyTypes.WormholeJunction && VersionNumber >= 30) //We generate the number of wormholes after version 30
-			{
-				int count = Generator.diceHelper.D20();
-				TextString = " " + count;
-			}
+			Size = size;
+
+			Generate();
 		}
 
 		internal override void Generate()
 		{
-			throw new NotImplementedException();
+			GenerateV30();
+		}
+
+		internal void GenerateV30()
+		{
+			for(int i = 0; i < 8; i++)
+			{
+				ChildEntities.Add(new ResourceSector(this, i));
+			}
 		}
 	}
 }

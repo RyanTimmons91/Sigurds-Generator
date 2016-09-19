@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
-	class CelestialObject : SystemEntity
+	class Civilization : SystemEntity
 	{
 		internal override EntityTypes EntityType
 		{
-			get { return EntityTypes.CelestialObject; }
+			get { return EntityTypes.Civilization; }
 		}
 
 		internal NodeObject _Node = null;
@@ -22,7 +22,7 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 			{
 				if (_Node == null)
 				{
-					NodeObject no = new NodeObject(this, "Cel.Obj. " + Type.ToString() + TextString);
+					NodeObject no = new NodeObject(this, "Civ. " + CivType.ToString() + " " + CivilizationTechLevel + " " + IntactPercent);
 
 					foreach (SystemEntity se in ChildEntities)
 					{
@@ -35,20 +35,24 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				else return _Node;
 			}
 		}
-		
-		CelestialBodyTypes Type;
-		string TextString = "";
 
-		internal CelestialObject(SystemEntity parent, CelestialBodyTypes type)
+		internal CivilizationTypes CivType;
+		
+		TechLevels CivilizationTechLevel;
+		int IntactPercent = 100;
+
+		internal Civilization(SystemEntity parent, CivilizationTypes civtype, TechLevels tech)
 		{
 			ParentEntity = parent;
-			Type = type;
 
-			if(Type == CelestialBodyTypes.WormholeJunction && VersionNumber >= 30) //We generate the number of wormholes after version 30
+			CivType = civtype;
+
+			if(CivType == CivilizationTypes.Lost)
 			{
-				int count = Generator.diceHelper.D20();
-				TextString = " " + count;
+				IntactPercent = Generator.diceHelper.Percentage();
 			}
+
+			CivilizationTechLevel = tech;
 		}
 
 		internal override void Generate()

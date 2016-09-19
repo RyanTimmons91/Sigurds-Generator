@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StarSystemGeneratorV2.Entity;
-using StarSystemGeneratorV2.Generator;
 
-namespace StarSystemGeneratorV2
+namespace StarSystemGeneratorV2.Entity.StarSystems
 {
 	class StarTypeModifiers
 	{
@@ -26,8 +24,10 @@ namespace StarSystemGeneratorV2
 			ModList.Add(StarTypes.D, new modifiers(StarTypes.D, -1, -1, -2));
 		}
 
-		internal static AtmosphereTypes ModifyAtmosphere(Star s, AtmosphereTypes A)
+		internal static AtmosphereTypes ModifyAtmosphere(SystemEntity Se, AtmosphereTypes A)
 		{
+			Star s = (Star)Se;
+
 			int AtmosphereMod = ModList[s.StarType].AtmoMod;
 			int tempAtmo = (int)A + AtmosphereMod;
 
@@ -38,27 +38,25 @@ namespace StarSystemGeneratorV2
 			return A;
 		}
 
-		internal static Temperatures ModifyTemperature(Star s, Temperatures T)
+		internal static Temperatures ModifyTemperature(SystemEntity Se, Temperatures T)
 		{
-			//Console.WriteLine("Original and Star: " + T + " " + s.StarType);
+			Star s = (Star)Se;
 
 			int TemperatureMod = ModList[s.StarType].TempMod;
 			int tempTemp = (int)T + TemperatureMod;
 
-			//Console.WriteLine("Mod and temptemp: " + TemperatureMod + " " + tempTemp);
+
 
 			if (tempTemp < 1) T = Temperatures.ExtremelyHot;
 			else if (tempTemp > 5) T = Temperatures.Temperate;
 			else T = (Temperatures)tempTemp;
 
-			//Console.WriteLine("Final Temp: " + T);
-			//Console.WriteLine("");
-
 			return T;
 		}
 
-		internal static Ecologies ModifyEcology(Star s, Ecologies E)
+		internal static Ecologies ModifyEcology(SystemEntity Se, Ecologies E)
 		{
+			Star s = (Star)Se;
 
 			int EcologyMod = ModList[s.StarType].EcoMod;
 			int tempEco = (int)E + EcologyMod;

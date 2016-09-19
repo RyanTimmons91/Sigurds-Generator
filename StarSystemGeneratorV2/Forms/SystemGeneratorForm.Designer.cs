@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemGeneratorForm));
 			this._GenerateButton = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -42,7 +41,6 @@
 			this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._diceRoller = new System.Windows.Forms.ToolStripMenuItem();
-			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.specialGeneratorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.armorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.handheldWeaponsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +51,10 @@
 			this.shipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.weaponCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._0SystemNumber = new System.Windows.Forms.Button();
-			this._versionText = new System.Windows.Forms.Label();
-			this._blinkWarning = new System.Windows.Forms.Timer(this.components);
 			this._versionGen = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
+			this._highlightComboBox = new System.Windows.Forms.ComboBox();
+			this.label3 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -74,11 +72,11 @@
 			// 
 			this._GenerateButton.Location = new System.Drawing.Point(12, 27);
 			this._GenerateButton.Name = "_GenerateButton";
-			this._GenerateButton.Size = new System.Drawing.Size(126, 23);
+			this._GenerateButton.Size = new System.Drawing.Size(100, 23);
 			this._GenerateButton.TabIndex = 0;
 			this._GenerateButton.Text = "Generate System";
 			this._GenerateButton.UseVisualStyleBackColor = true;
-			this._GenerateButton.Click += new System.EventHandler(this._testButton_Click);
+			this._GenerateButton.Click += new System.EventHandler(this._GenerateButton_Click);
 			// 
 			// splitContainer1
 			// 
@@ -156,7 +154,7 @@
 			// 
 			// _seedBox
 			// 
-			this._seedBox.Location = new System.Drawing.Point(144, 30);
+			this._seedBox.Location = new System.Drawing.Point(118, 30);
 			this._seedBox.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -172,7 +170,6 @@
             this.infoToolStripMenuItem,
             this.clearToolStripMenuItem,
             this._diceRoller,
-            this.optionsToolStripMenuItem,
             this.specialGeneratorsToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -200,13 +197,6 @@
 			this._diceRoller.Size = new System.Drawing.Size(75, 20);
 			this._diceRoller.Text = "Dice Roller";
 			this._diceRoller.Click += new System.EventHandler(this._diceRoller_Click);
-			// 
-			// optionsToolStripMenuItem
-			// 
-			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-			this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-			this.optionsToolStripMenuItem.Text = "Options";
-			this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
 			// 
 			// specialGeneratorsToolStripMenuItem
 			// 
@@ -282,7 +272,7 @@
 			// 
 			// _0SystemNumber
 			// 
-			this._0SystemNumber.Location = new System.Drawing.Point(331, 27);
+			this._0SystemNumber.Location = new System.Drawing.Point(305, 27);
 			this._0SystemNumber.Name = "_0SystemNumber";
 			this._0SystemNumber.Size = new System.Drawing.Size(22, 23);
 			this._0SystemNumber.TabIndex = 8;
@@ -290,25 +280,9 @@
 			this._0SystemNumber.UseVisualStyleBackColor = true;
 			this._0SystemNumber.Click += new System.EventHandler(this._0SystemNumber_Click);
 			// 
-			// _versionText
-			// 
-			this._versionText.AutoSize = true;
-			this._versionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this._versionText.Location = new System.Drawing.Point(359, 27);
-			this._versionText.Name = "_versionText";
-			this._versionText.Size = new System.Drawing.Size(146, 20);
-			this._versionText.TabIndex = 9;
-			this._versionText.Text = "Using Version 18";
-			// 
-			// _blinkWarning
-			// 
-			this._blinkWarning.Enabled = true;
-			this._blinkWarning.Interval = 500;
-			this._blinkWarning.Tick += new System.EventHandler(this._blinkWarning_Tick);
-			// 
 			// _versionGen
 			// 
-			this._versionGen.Location = new System.Drawing.Point(289, 30);
+			this._versionGen.Location = new System.Drawing.Point(263, 30);
 			this._versionGen.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -318,7 +292,7 @@
 			this._versionGen.Size = new System.Drawing.Size(36, 20);
 			this._versionGen.TabIndex = 10;
 			this._versionGen.Value = new decimal(new int[] {
-            29,
+            30,
             0,
             0,
             0});
@@ -326,11 +300,34 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(270, 32);
+			this.label2.Location = new System.Drawing.Point(244, 32);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(13, 13);
 			this.label2.TabIndex = 11;
 			this.label2.Text = "--";
+			// 
+			// _highlightComboBox
+			// 
+			this._highlightComboBox.FormattingEnabled = true;
+			this._highlightComboBox.Items.AddRange(new object[] {
+            "None",
+            "Ready for Colonization",
+            "Lost Civilizations"});
+			this._highlightComboBox.Location = new System.Drawing.Point(400, 29);
+			this._highlightComboBox.Name = "_highlightComboBox";
+			this._highlightComboBox.Size = new System.Drawing.Size(121, 21);
+			this._highlightComboBox.TabIndex = 12;
+			this._highlightComboBox.Text = "FEATURE NYI";
+			this._highlightComboBox.SelectedIndexChanged += new System.EventHandler(this._highlightComboBox_SelectedIndexChanged);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(343, 32);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(51, 13);
+			this.label3.TabIndex = 13;
+			this.label3.Text = "Highlight:";
 			// 
 			// SystemGeneratorForm
 			// 
@@ -338,9 +335,10 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(533, 445);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this._highlightComboBox);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this._versionGen);
-			this.Controls.Add(this._versionText);
 			this.Controls.Add(this._0SystemNumber);
 			this.Controls.Add(this._seedBox);
 			this.Controls.Add(this.splitContainer1);
@@ -350,7 +348,6 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "SystemGeneratorForm";
 			this.Text = "Sigurds Universe Generator System";
-			this.Load += new System.EventHandler(this.SystemGeneratorForm_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -381,15 +378,12 @@
 		private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
 		private System.Windows.Forms.Button _0SystemNumber;
 		private System.Windows.Forms.ToolStripMenuItem _diceRoller;
-		private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox _globalSystemNumber;
 		private System.Windows.Forms.ToolStripMenuItem specialGeneratorsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem weaponCostToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem resourceCostToolStripMenuItem;
-		private System.Windows.Forms.Label _versionText;
-		private System.Windows.Forms.Timer _blinkWarning;
 		private System.Windows.Forms.ToolStripMenuItem mechaWeightCostToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem handheldWeaponsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem armorToolStripMenuItem;
@@ -398,6 +392,8 @@
 		private System.Windows.Forms.ToolStripMenuItem shipsToolStripMenuItem;
 		private System.Windows.Forms.NumericUpDown _versionGen;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ComboBox _highlightComboBox;
+		private System.Windows.Forms.Label label3;
 	}
 }
 

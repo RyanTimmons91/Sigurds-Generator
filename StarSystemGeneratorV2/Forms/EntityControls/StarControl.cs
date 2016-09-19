@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 namespace StarSystemGeneratorV2.EntityControls
 {
@@ -15,40 +15,46 @@ namespace StarSystemGeneratorV2.EntityControls
 	{
 		Star star;
 
-		internal StarControl(Star st)
+		internal StarControl(SystemEntity se)
 		{
 			InitializeComponent();
 
-			star = st;
+			Star star = (Star)se;
 
 			int HE3 = 0;
 			int Planets = 0;
 			int OxygenPlanets = 0;
 			int OxyMethPlanets = 0;
 
-			Planets += st.Planets.Length; //All Planets
-
-			foreach (Planet p in st.Planets)
+			foreach(SystemEntity entity in star.ChildEntities)
 			{
-				if (p.isGasGiant)
+				if(entity.EntityType == EntityTypes.GasGiant)
 				{
-					//IS A GAS GIANT
-					if (p.GasGiantAtmospheres.Contains(AtmosphereTypes.HE3))
+					Planets++;
+					Planet giant = (Planet)entity;
+					if(giant.gasAtmospheres.Contains(AtmosphereTypes.HE3))
 					{
-						HE3++; //ALL HE3
+						HE3++;
 					}
 				}
-				else
+				if (entity.EntityType == EntityTypes.Planet)
 				{
-					//NOT A GAS GIANT
-					if (p.entityAtmosphere == AtmosphereTypes.Oxygen) OxygenPlanets++; //OXYGEN ATMO
-					if (p.entityAtmosphere == AtmosphereTypes.OxygenMethane) OxyMethPlanets++; //OXYMETH ATMO
-				}
+					Planets++;
+					Planet planet = (Planet)entity;
+					if(planet.entityAtmosphere_Final == AtmosphereTypes.HE3) HE3++;
+					if(planet.entityAtmosphere_Final == AtmosphereTypes.Oxygen) OxygenPlanets++;
+					if(planet.entityAtmosphere_Final == AtmosphereTypes.OxygenMethane) OxyMethPlanets++;
 
-				foreach (Moon m in p.Moons)
-				{
-					if (m.entityAtmosphere == AtmosphereTypes.Oxygen) OxygenPlanets++; //OXYGEN ATMO
-					if (m.entityAtmosphere == AtmosphereTypes.OxygenMethane) OxyMethPlanets++; //OXYMETH ATMO
+					foreach(SystemEntity child in planet.ChildEntities)
+					{
+						if(child.EntityType == EntityTypes.Moon)
+						{
+							Moon moon = (Moon)child;
+							if(moon.entityAtmosphere_Final == AtmosphereTypes.HE3) HE3++;
+							if(moon.entityAtmosphere_Final == AtmosphereTypes.Oxygen) OxygenPlanets++;
+							if(moon.entityAtmosphere_Final == AtmosphereTypes.OxygenMethane) OxyMethPlanets++;
+						}
+					}
 				}
 			}
 

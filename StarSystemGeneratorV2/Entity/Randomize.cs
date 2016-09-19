@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 namespace StarSystemGeneratorV2.Generator
 {
 	class Randomize
 	{
-		internal int GenVersion
+		//internal int GenVersion
+		//{
+		//	get
+		//	{
+		//		return Properties.Settings.Default.GeneratorVersion;
+		//	}
+		//}
+		internal int _GenVersion = 0;
+		int GenVersion
 		{
 			get
 			{
-				return Properties.Settings.Default.GeneratorVersion;
+				if (_GenVersion == 0) throw new InvalidOperationException("GenVersion has not been set!");
+				return _GenVersion;
 			}
 		}
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 
 namespace StarSystemGeneratorV2.SaveLoad
@@ -17,10 +17,10 @@ namespace StarSystemGeneratorV2.SaveLoad
 
 			try
 			{
-				foreach (StarSystem SS in StarSystem.StarSystems)
-				{
-					//SS.Save(SW);
-				}
+				//foreach (StarSystem SS in StarSystem.StarSystems)
+				//{
+				//	//SS.Save(SW);
+				//}
 			}
 			catch
 			{

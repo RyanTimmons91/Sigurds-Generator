@@ -8,21 +8,21 @@ using System.Windows.Forms;
 
 namespace StarSystemGeneratorV2.Entity.StarSystems
 {
-	class CelestialObject : SystemEntity
+	class UniquePlanetaryAspects : SystemEntity
 	{
 		internal override EntityTypes EntityType
 		{
-			get { return EntityTypes.CelestialObject; }
+			get { return EntityTypes.UniquePlanetaryAspect; }
 		}
 
 		internal NodeObject _Node = null;
 		internal override NodeObject Node
 		{
-			get
+			get 
 			{
 				if (_Node == null)
 				{
-					NodeObject no = new NodeObject(this, "Cel.Obj. " + Type.ToString() + TextString);
+					NodeObject no = new NodeObject(this, "Aspect " + Aspect.ToString());
 
 					foreach (SystemEntity se in ChildEntities)
 					{
@@ -35,20 +35,13 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				else return _Node;
 			}
 		}
-		
-		CelestialBodyTypes Type;
-		string TextString = "";
 
-		internal CelestialObject(SystemEntity parent, CelestialBodyTypes type)
+		UniquePlanetAspects Aspect;
+
+		internal UniquePlanetaryAspects(SystemEntity parent, UniquePlanetAspects a)
 		{
 			ParentEntity = parent;
-			Type = type;
-
-			if(Type == CelestialBodyTypes.WormholeJunction && VersionNumber >= 30) //We generate the number of wormholes after version 30
-			{
-				int count = Generator.diceHelper.D20();
-				TextString = " " + count;
-			}
+			Aspect = a;
 		}
 
 		internal override void Generate()

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 namespace StarSystemGeneratorV2.EntityControls
 {
@@ -15,29 +15,29 @@ namespace StarSystemGeneratorV2.EntityControls
 	{
 		Planet planet;
 
-		internal PlanetControl(Planet p)
+		internal PlanetControl(SystemEntity se)
 		{
 			InitializeComponent();
 
-			planet = p;
+			Planet planet = (Planet)se;
 
-			_sizeBox.Text = p.Size.ToString();
-			_atmosphereBox.Text = p.entityAtmosphere + " was " + p.originalAtmosphere;
-			_tempBox.Text = p.entityTemperature + " was " + p.originalTemperature;
-			_ecologyBox.Text = p.entityEcology.ToString();
+			_sizeBox.Text = planet.Size.ToString();
+			_atmosphereBox.Text = planet.entityAtmosphere_Final.ToString();
+			_tempBox.Text = planet.entityTemperature_Final.ToString();
+			_ecologyBox.Text = planet.entityEcology.ToString();
 
-			_livingBox.Text = p.LivingCivilization.ToString();
-			_lostBox.Text = p.LostCivilization.ToString() + " " + p.LostCivIntactPercentage + "% intact";
+			//_livingBox.Text = p.LivingCivilization.ToString();
+			//_lostBox.Text = p.LostCivilization.ToString() + " " + p.LostCivIntactPercentage + "% intact";
 
-			foreach(UniquePlanetAspects UPA in p.UniquePlanetAspects)
-			{
-				_uniqueAspectBox.Items.Add(UPA);
-			}
+			//foreach(UniquePlanetAspects UPA in p.UniquePlanetAspects)
+			//{
+			//	_uniqueAspectBox.Items.Add(UPA);
+			//}
 
-			foreach (Resource R in p.Resources)
-			{
-				_resourcesBox.Items.Add(R);
-			}
+			//foreach (Resource R in p.Resources)
+			//{
+			//	_resourcesBox.Items.Add(R);
+			//}
 		}
 	}
 }

@@ -7,25 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StarSystemGeneratorV2.Entity;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 namespace StarSystemGeneratorV2.EntityControls
 {
 	public partial class GasGiantControl : UserControl
 	{
-		Planet planet;
-
-		internal GasGiantControl(Planet p)
+		internal GasGiantControl(SystemEntity se)
 		{
 			InitializeComponent();
 
-			planet = p;
+			Planet planet = (Planet)se;
 
-			_sizeBox.Text = p.Size.ToString();
-			_gasGiantType.Text = p.GasGiantType.ToString();
-			_lostCivBox.Text = p.LostCivilization.ToString();
-
-			foreach (AtmosphereTypes AT in p.GasGiantAtmospheres)
+			_sizeBox.Text = planet.Size.ToString();
+			_gasGiantType.Text = planet.GGS.ToString();
+			
+			foreach (AtmosphereTypes AT in planet.gasAtmospheres)
 			{
 				_otherAtmospheres.Items.Add(AT);
 			}

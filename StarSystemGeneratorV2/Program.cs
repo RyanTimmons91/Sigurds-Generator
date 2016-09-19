@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StarSystemGeneratorV2.Entity.StarSystems;
 
 namespace StarSystemGeneratorV2
 {
@@ -15,7 +16,7 @@ namespace StarSystemGeneratorV2
 		static void Main()
 		{
 			StarTypeModifiers.Init();
-			
+
 			if (Control.ModifierKeys == Keys.Control)
 			{
 				Properties.Settings.Default.CustomDieRolls = null;

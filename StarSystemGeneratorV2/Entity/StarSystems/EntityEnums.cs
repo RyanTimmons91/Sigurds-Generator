@@ -4,8 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StarSystemGeneratorV2.Entity
+namespace StarSystemGeneratorV2.Entity.StarSystems
 {
+	public enum HighlightTypes
+	{
+		None = 0,
+		ReadyForColonization = 1,
+		LostColony = 2,
+	}
+
 	public enum EntityTypes
 	{
 		NoShow,
@@ -16,10 +23,13 @@ namespace StarSystemGeneratorV2.Entity
 		GasGiant,
 		Moon,
 		DebrisRing,
+		ResourceSector,
 
 		Resource,
-		
+
+		UniquePlanetaryAspect,
 		CelestialObject,
+
 		Civilization,
 
 		HyperspaceGate,
