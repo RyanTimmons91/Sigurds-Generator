@@ -350,478 +350,425 @@ namespace StarSystemGeneratorV2
 		{
 			ArmorEquipment HUD = new ArmorEquipment("HUD",
 				@"This upgrade can be easily added to any cyber-optic and it allows for varying types of information to be displayed on the cyber-optic, quite a few Cyberware options require the installation of one of these.",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				500,
+				"Built in HUD",
 				0.25m,
 				null);
 			new ArmorEquipment("Anti Flash",
 				@"This option allows the person to avoid being blinded by bright flashes of light such as flash bangs and spotlights.
 You gain a bonus to physical exertion vs. blinding.",
-				5,
 				new List<decimal> { 100, 200, 300, 400, 500 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Exertion vs. Blinding", "+2 Exertion vs. Blinding", "+3 Exertion vs. Blinding", "+4 Exertion vs. Blinding", "+5 Exertion vs. Blinding" },
 				0,
 				HUD);
 			new ArmorEquipment("Coloration Change",
 				@"This allows a person to change the colors of their eyes at will.",
-				1,
-				new List<decimal> { 250 },
-				new List<string> { "" },
+				250,
+				"(Eye Color Change) - Allow user to change eye color at will",
 				0,
 				HUD);
 			new ArmorEquipment("GPS",
 				@"With this module you can easily connect to GPS satellites in orbit around the planet you are on. You gain a bonus to survival skills – navigate. Note: There has to be GPS satellites in orbit.",
-				1,
-				new List<decimal> { 150 },
-				new List<string> { "" },
+				150,
+				"Built in GPS",
 				0,
 				HUD);
 			new ArmorEquipment("IR",
 				@"This upgrade allows you to easily see in the infra-red range of vision.
 You gain a bonus to notice checks for IR.",
-				5,
 				new List<decimal> { 50, 100, 150, 200, 250 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Checks for IR", "+2 Checks for IR", "+3 Checks for IR", "+4 Checks for IR", "+5 Checks for IR" },
 				0,
 				HUD);
 			new ArmorEquipment("Image Enhancer",
 				@"With this upgrade your cyber-optics are able to take visual data and enhance it greatly allowing you to make out details.
 It should be noted that this cannot be done real time but must be done once the image has been taken.
 You gain a bonus to notice after the enhancement is complete.",
-				5,
 				new List<decimal> { 25, 50, 75, 100, 125 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Image Enhancement", "+2 Image Enhancement", "+3 Image Enhancement", "+4 Image Enhancement", "+5 Image Enhancement" },
 				0,
 				HUD);
 			new ArmorEquipment("Low Light",
 				@"With this upgrade you gain the ability to see more clearly in low-light situations.
 You gain a bonus to notice checks in low-light.",
-				5,
 				new List<decimal> { 12.5m, 25m, 37.5m, 50m, 62.5m },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Notice checks in Low Light", "+2 Notice checks in Low Light", "+3 Notice checks in Low Light", "+4 Notice checks in Low Light", "+5 Notice checks in Low Light" },
 				0,
 				HUD);
 			new ArmorEquipment("Magnification",
 				@"With this upgrade you are able to more clearly see at long ranges and be able to view microscopic items with detail.
 You gain extended increment ranges and the ability to magnify close objects.",
-				5,
 				new List<decimal> { 200, 400, 600, 800, 1000 },
-				new List<string> { "x1.5", "x2", "x3", "x4", "x5" },
+				new List<string> { "x1.5 Magnification", "x2 Magnification", "x3 Magnification", "x4 Magnification", "x5 Magnification" },
 				0,
 				HUD);
 			new ArmorEquipment("Night Vision",
 				@"With this upgrade you are able to see in complete darkness.
 You gain a bonus to notice checks in complete darkness along with being able to see a certain distance.",
-				5,
 				new List<decimal> { 2200, 4400, 6600, 8800, 11000 },
-				new List<string> { "+1 Notice to 3m", "+2 Notice to 6m", "+3 Notice to 9m", "+4 Notice to 12m", "+5 Notice to 15m" },
+				new List<string> { "+1 Notice to 3m in complete darkness", "+2 Notice to 6m in complete darkness", "+3 Notice to 9m in complete darkness", "+4 Notice to 12m in complete darkness", "+5 Notice to 15m in complete darkness" },
 				0,
 				HUD);
 			new ArmorEquipment("Range Finder",
 				@"With the RF-[L] you are able to LASE a target and get a more accurate idea of how far away it is as well as being able to target it for incoming ordnance.
 Ordnance and missiles gain a bonus to hit when using this.",
-				5,
 				new List<decimal> { 100, 200, 300, 400, 500 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 to hit with Ordanance and Missiles", "+2 to hit with Ordanance and Missiles", "+3 to hit with Ordanance and Missiles", "+4 to hit with Ordanance and Missiles", "+5 to hit with Ordanance and Missiles" },
 				0,
 				HUD);
 			new ArmorEquipment("TADS",
 				@"Target Acquisition & Designation System 
 First used in the Apache Helicopters in the 20th century this downscaled version gives bonuses to a vehicle mounted ranged weapon that is linked through the TADS system; however the weapon must have a special laser sight attached to it.",
-				5,
 				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 to hit with compatible Vehicle mounted weapons", "+2 to hit with compatible Vehicle mounted weapons", "+3 to hit with compatible Vehicle mounted weapons", "+4 to hit with compatible Vehicle mounted weapons", "+5 to hit with compatible Vehicle mounted weapons" },
 				0,
 				HUD);
 			new ArmorEquipment("Thermal",
 				@"This upgrade allows a person to see in the thermal range allowing them to distinguish between most animate and inanimate objects.
 You gain a bonus to notice – sight checks in the thermal range.",
-				5,
 				new List<decimal> { 150, 300, 450, 600, 750 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Notice-sight checks in the Thermal Range", "+2 Notice-sight checks in the Thermal Range", "+3 Notice-sight checks in the Thermal Range", "+4 Notice-sight checks in the Thermal Range", "+5 Notice-sight checks in the Thermal Range" },
 				0,
 				HUD);
 			new ArmorEquipment("Time / Date",
 				@"Shows the Galactic Standard Date and Time on the HUD",
-				1,
 				new List<decimal> { 25 },
-				new List<string> { "" },
+				new List<string> { "Time / Date Available on HUD" },
 				0,
 				HUD);
 			new ArmorEquipment("UV",
 				@"With this upgrade your optics put out a UV based light allowing you to more easily see in low-light and darkness as well as being able to see in the UV range.
 You gain a bonus to notice – sight in the UV range.",
-				5,
 				new List<decimal> { 300, 600, 900, 1200, 1500 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Notice-Sight checks in the UV Range", "+2 Notice-Sight checks in the UV Range", "+3 Notice-Sight checks in the UV Range", "+4 Notice-Sight checks in the UV Range", "+5 Notice-Sight checks in the UV Range" },
 				0,
 				HUD);
 			new ArmorEquipment("View Screen",
 				@"Used to access and playback video",
-				1,
 				new List<decimal> { 500 },
-				new List<string> { "" },
+				new List<string> { "Built in Video Playet" },
 				0,
 				HUD);
 //--------------------------------------------------------------------------------------------------------------------------
 			ArmorEquipment Radio = new ArmorEquipment("Radio",
 				@"This bonus allows your Armor to pick up radio signals in the area, this is required for any of the
 sub item's to function.",
-				1,
 				new List<decimal> { 100 },
-				new List<string> { "" },
+				new List<string> { "Built in Radio" },
 				1, //KG
 				null);
 			new ArmorEquipment("Short Range Comm.",
 				@"This communications system allows you to communicate normally as if you were using a handheld COMM unit.",
-				1,
 				new List<decimal> { 100 },
-				new List<string> { "" },
+				new List<string> { "Built in Short Range Comm." },
 				0,
 				Radio);
 			new ArmorEquipment("Medium Range Comm.",
 				@"This communications system allows you to communicate normally as if you were using a handheld COMM unit.",
-				1,
 				new List<decimal> { 150 },
-				new List<string> { "" },
+				new List<string> { "Built in Medium Range Comm." },
 				0,
 				Radio);
 			new ArmorEquipment("Long Range Comm.",
 				@"This communications system allows you to communicate normally as if you were using a handheld COMM unit.",
-				1,
 				new List<decimal> { 250 },
-				new List<string> { "" },
+				new List<string> { "Built in Long Range Comm." },
 				0,
 				Radio);
 			new ArmorEquipment("Bullhorn",
 				@"This amplifies the sound of your voice allowing others to more easily hear you.
 Others gain a bonus to notice – hearing checks when you are talking.",
-				1,
 				new List<decimal> { 500 },
-				new List<string> { "+5" },
+				new List<string> { "+5 to other Notice-hearing checks when you are talking" },
 				0,
 				Radio);
 			new ArmorEquipment("Forked Tongue",
 				@"This module allows a person to more easily and smoothly tell lies without anyone being able to tell by their tone if they are lying. You gain a bonus to your deception rolls.",
-				1,
 				new List<decimal> { 500 },
-				new List<string> { "+5" },
+				new List<string> { "+5 to deception rolls" },
 				0,
 				Radio);
 			new ArmorEquipment("Synthesizer",
 				@"This item allows you to mimic sounds such as animals and background noise. You gain a bonus to mimicking noises.",
-				1,
 				new List<decimal> { 500 },
-				new List<string> { "+5" },
+				new List<string> { "+5 to noise mimicking" },
 				0,
 				Radio);
 			new ArmorEquipment("Voice Pattern",
 				@"This item allows you to mimic other people’s voice patterns almost perfectly. You gain a bonus to mimicking other people’s voices.",
-				1,
 				new List<decimal> { 500 },
-				new List<string> { "+5" },
+				new List<string> { "+5 to voice mimicking" },
 				0,
 				Radio);
 			new ArmorEquipment("HAS",
 				@"The HAS system is able to enhance ones hearing and comes with numerous other accessories that can be easily added to the system.
 The system comes with a number of varying slots for upgrades depending on model.
 You gain a bonus to notice hearing.",
-				5,
 				new List<decimal> { 500, 1000, 1500, 2000, 2500 },
-				new List<string> { "+1, 2 Slots", "+2, 4 Slots", "+3, 6 Slots", "+4, 8 Slots", "+5, 10 Slots" },
+				new List<string> { "+1 to Notice Hearing, 2 HAS Slots", "+2 to Notice Hearing, 4 HAS Slots", "+3 to Notice Hearing, 6 HAS Slots", "+4 to Notice Hearing, 8 HAS Slots", "+5 to Notice Hearing, 10 HAS Slots" },
 				0,
 				Radio);
 			new ArmorEquipment("Audible Tracker",
 				@"This module allows you to lock onto a sound and track is easily; there is also a sub- and super-audible upgrades available allowing for the tracking of devices that emit these frequencies. 
 You gain a bonus to survival skills – tracking; audio only.",
-				5,
 				new List<decimal> { 500, 1000, 1500, 2000, 2500 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 to survival skills - tracking (Audio Only)", "+2 to survival skills - tracking (Audio Only)", "+3 to survival skills - tracking (Audio Only)", "+4 to survival skills - tracking (Audio Only)", "+ to survival skills - tracking (Audio Only)5" },
 				0,
 				Radio);
 			new ArmorEquipment("Scrambler",
 				@"This module scrambles your outgoing communications and descrambles incoming communications making it harder for others to eavesdrop on your conversations.
 Others gain a minus to descramble your communications when attempting to listen in. ",
-				5,
 				new List<decimal> { 2500, 5000, 7500, 10000, 12500 },
-				new List<string> { "-1", "-2", "-3", "-4", "-5" },
+				new List<string> { "-1 to other attmpts to descramble your communications", "-2 to other attmpts to descramble your communications", "-3 to other attmpts to descramble your communications", "-4 to other attmpts to descramble your communications", "-5 to other attmpts to descramble your communications" },
 				0,
 				Radio);
 			new ArmorEquipment("Descrambler",
 				@"This module gives you a bonus to Descramble other communications",
-				5,
 				new List<decimal> { 2500, 5000, 7500, 10000, 12500 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 to descramble other communications", "+2 to descramble other communications", "+3 to descramble other communications", "+4 to descramble other communications", "+5 to descramble other communications" },
 				0,
 				Radio);
 			new ArmorEquipment("Sensor Detector",
 				@"With this module you get an audible ping when it detects Radar, Sonar, IR, thermal, Laser, or Ultra sonic detection devices.
 You gain a bonus to notice checks.
 It should be noted that each one of these ranges is a separate module.",
-				5,
 				new List<decimal> { 5000, 10000, 15000, 20000, 25000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 Bonus to Notice Checks in a specific range", "+2 Bonus to Notice Checks in a specific range", "+3 Bonus to Notice Checks in a specific range", "+4 Bonus to Notice Checks in a specific range", "+5 Bonus to Notice Checks in a specific range" },
 				0,
 				Radio);
 			new ArmorEquipment("Recording Link",
 				@"Combined with a moly-chip reader you can record everything that you hear.",
-				1,
 				new List<decimal> { 500 },
-				new List<string> { "" },
+				new List<string> { "Built in Recorder (Requires a moly chip)" },
 				0,
 				Radio);
 			new ArmorEquipment("Sat uplink",
 				@"Allows a person to uplink to orbital sattelites",
-				1,
 				new List<decimal> { 1000 },
-				new List<string> { "" },
+				new List<string> { "Built in Sat Uplink" },
 				1, //KG
 				Radio);
 			new ArmorEquipment("Sound Dampner",
 				@"This module automatically dampens loud noises keeping you from being deafened by them.
 You gain a bonus to physical exertions vs. deafening.",
-				5,
 				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 physical exertions vs. Deafening", "+2 physical exertions vs. Deafening", "+3 physical exertions vs. Deafening", "+4 physical exertions vs. Deafening", "+5 physical exertions vs. Deafening" },
 				0,
 				Radio);
 			new ArmorEquipment("Subaudible",
 				@"These modules allow you to pick up and hear in the sub-audible ranges.
 You gain a bonus to notice hearing for these ranges.",
-				5,
 				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 notice - hearing - subaudible", "+2 notice - hearing - subaudible", "+3 notice - hearing - subaudible", "+4 notice - hearing - subaudible", "+5 notice - hearing - subaudible" },
 				0,
 				Radio);
 			new ArmorEquipment("Superaudible",
 				@"These modules allow you to pick up and hear in the super-audible ranges.
 You gain a bonus to notice hearing for these ranges.",
-				5,
 				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 notice - hearing - superaudible", "+2 notice - hearing - superaudible", "+3 notice - hearing - superaudible", "+4 notice - hearing - superaudible", "+5 notice - hearing - superaudible" },
 				0,
 				Radio);
 			new ArmorEquipment("Encrypted Comm",
 				@"With this module you are able to pick up and hear both encrypted and unencrypted communications.
 You gain a bonus to decrypt communications signals.",
-				5,
 				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 against decryption", "+2 against decryption", "+3 against decryption", "+4 against decryption", "+5 against decryption" },
 				0,
 				Radio);
 //--------------------------------------------------------------------------------------------------------------------------
 			ArmorEquipment Physical = new ArmorEquipment("Physical Enhancements",
 				@"These enhancements give the operator a distinct physcal edge over their opponents.",
-				1,
-				new List<decimal> { 0 },
-				new List<string> { "" },
+				new List<decimal> {  },
+				new List<string> {  },
 				0,
 				null);
 			new ArmorEquipment("Gyro Stablizer",
 				@"This cybernetic device keeps you level and steady while trying to perform attacks from a vehicle or from the back of an animal. You gain a bonus to attacks from animals and vehicles.",
-				5,
 				new List<decimal> { 200, 400, 600, 800, 1000 },
-				new List<string> { "+1", "+2", "+3", "+4", "+5" },
+				new List<string> { "+1 to attacks from Animals and Vehicles", "+2 to attacks from Animals and Vehicles", "+3 to attacks from Animals and Vehicles", "+4 to attacks from Animals and Vehicles", "+5 to attacks from Animals and Vehicles" },
 				0,
 				Physical);
 			new ArmorEquipment("Joint Reinforcement",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"With these Cyberware upgrades you can reinforce your joints to better take punishment from damage and from carrying more weight than you normally would.
+You ignore any remove limb rolls on the critical hit/miss charts and you gain extra carrying capacity as well as being able to handle larger weapons.",
+				new List<decimal> { 250, 500, 750, 1000, 1250 },
+				new List<string> { "+1 to weapon size, +7kg Carry capacity", "+2 to weapon size, +13kg Carry capacity", "+3 to weapon size, +20kg Carry capacity", "+4 to weapon size, +27kg Carry capacity", "+5 to weapon size, +33kg Carry capacity"},
 				0,
 				Physical);
 			new ArmorEquipment("Reinforced Spine",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"The reinforced spine allows a person to have a lift/carry capacity for extraordinarily large amounts of weight for short periods of time.
+You gain additional weight to you lift capacity for a certain number of rounds.",
+				new List<decimal> { 600, 1200, 1800, 2400, 3000 },
+				new List<string> { "+100kg carry capacity for 2 rounds", "+200kg carry capacity for 4 rounds", "+300kg carry capacity for 6 rounds", "+400kg carry capacity for 8 rounds", "+500kg carry capacity for 10 rounds" },
 				0,
 				Physical);
 			new ArmorEquipment("Strengthened Shoulders",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"These shoulders are designed to give you more strength in the shoulder area allowing for heavier carrying capacity and increased climbing speed.",
+				new List<decimal> { 2000, 4000, 6000, 8000, 10000 },
+				new List<string> { "+25 carry weight, +5 Climb speed", "+50 carry weight, +10 Climb speed", "+75 carry weight, +15 Climb speed", "+100 carry weight, +20 Climb speed", "+125 carry weight, +25 Climb speed" },
 				0,
 				Physical);
 //--------------------------------------------------------------------------------------------------------------------------
 			ArmorEquipment Medical = new ArmorEquipment("Medical",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"The equipment in this category Helps the Operator overcome life threatening situations",
+				new List<decimal> {  },
+				new List<string> {  },
 				0,
 				null);
 			new ArmorEquipment("Biomonitor Personal",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This device is mounted somewhere in a person’s body and keeps track of their health and well-being and must be linked to a person’s HUD",
+				250,
+				"Built in Personal Bio-Monitor",
 				0,
 				Medical);
 			new ArmorEquipment("Biomonitor Remote",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This device is mounted somewhere in a person’s body and keeps track of their health and well-being and must be relayed to a remote terminal",
+				500,
+				"Built in Remote Bio-Monitor",
 				0,
 				Medical);
 			new ArmorEquipment("Internal Defribrillator",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This Cyberware device is placed next to the purchaser’s heart and if they die there is a chance that they can be revived.
+You get a percentage chance of reviving and gaining hit points back once you go past your reserve hit points.",
+				new List<decimal> { 20000, 30000, 40000, 50000, 60000 },
+				new List<string> { "20% Chance of Revival @ 10 Hit Points", "30% Chance of Revival @ 20 Hit Points", "40% Chance of Revival @ 30 Hit Points", "50% Chance of Revival @ 40 Hit Points", "60% Chance of Revival @ 50 Hit Points" },
 				0,
 				Medical);
 			new ArmorEquipment("Psychological SE",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"With this Cyberware you gain the ability to more easily tell if someone is lying or at least hiding part of the truth.
+You must have a HUD or implanted view screen to use this Cyberware.
+You gain a bonus to mental exertions vs. deception.",
+				new List<decimal> { 100, 200, 300, 400, 500 },
+				new List<string> { "+1 to Mental Exertions vs. Deception", "+2 to Mental Exertions vs. Deception", "+3 to Mental Exertions vs. Deception", "+4 to Mental Exertions vs. Deception", "+5 to Mental Exertions vs. Deception" },
 				0,
 				Medical);
 //--------------------------------------------------------------------------------------------------------------------------
 			ArmorEquipment Utility = new ArmorEquipment("Utility",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This equipment serves a specific purpose for the operator",
+				new List<decimal> {  },
+				new List<string> {  },
 				0, 
 				null);
 			new ArmorEquipment("Oxygen",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"this upgrade allows your suit to contain a number of hours of oxygen to keep you alive when in hostile environments",
+				new List<decimal> { 1, 2 },
+				new List<string> { "Nothing To See Here" },
 				0,
 				Utility);
 			new ArmorEquipment("Face Shield",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This is an armored covering that covers the face.
+This adds damage deflection to your face.",
+				new List<decimal> { 40, 80, 120, 160, 200 },
+				new List<string> { "+1 DD to Face", "+2 DD to Face", "+3 DD to Face", "+4 DD to Face", "+5 DD to Face" },
 				0,
 				Utility);
 			new ArmorEquipment("Flash Light",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"A flashlight built into your suit.",
+				new List<decimal> { 10 },
+				new List<string> { "Built in Flashlight" },
 				0,
 				Utility);
 			new ArmorEquipment("Temp. Control",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"With this upgrade you can better survive in adverse weather conditions.
+You gain a bonus to physical exertions vs. cold or hot weather.",
+				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
+				new List<string> { "+1 vs. Hot or Cold", "+2 vs. Hot or Cold", "+3 vs. Hot or Cold", "+4 vs. Hot or Cold", "+5 vs. Hot or Cold" },
 				0,
 				Utility);
 			new ArmorEquipment("Moly Chip Slot",
-				@"",
-				1,
+				@"A place to insert a Moly Chip Slot for Reading or Data Recording, must have a HUD to view Data",
 				new List<decimal> { 500 },
-				new List<string> { "" },
+				new List<string> { "Built in Moly-Chip slot" },
 				0,
 				Utility);
 			new ArmorEquipment("Camera",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This camera can record up to 10 hours of internal footage or save data to a Moly-Chip (if you have a Moly-Chip Slot)",
+				new List<decimal> { 100 },
+				new List<string> { "Built in Camera" },
 				0,
 				Utility);
 			new ArmorEquipment("Holo Projector",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This miniature projector is generally mounted in the palm of the hand and is concealed beneath an armored panel that retracts to allow use. The projector can show Holo-vids, stills, and even light shows if absolutely necessary and has a 100 Terabytes of internal storage.",
+				new List<decimal> { 250 },
+				new List<string> { "Built in Holo-Projector" },
 				0,
 				Utility);
-			new ArmorEquipment("Interface Plug",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+			new ArmorEquipment("Cyber Jack",
+				@"This small Cyberware device allows a person to physically link via cable to most devices whether for the GalactaNET or to operate the basic functions of a device.",
+				new List<decimal> { 50 },
+				new List<string> { "Built in Cyber Jack" },
 				0,
 				Utility);
 			new ArmorEquipment("Irthop Coating",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This coating dampens thermal and infrared sensing as well as being able to physically cloak things from the optical range.",
+				new List<decimal> { 2000, 4000, 6000, 8000, 10000 },
+				new List<string> { "+2 to Survival Skills camouflage", "+4 to Survival Skills camouflage", "+6 to Survival Skills camouflage", "+8 to Survival Skills camouflage", "+10 to Survival Skills camouflage" },
 				0,
 				Utility);
 			new ArmorEquipment("Magnetic Grip Pads",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"These pads are mounted in the feet and hands and have an electrically charged magnetic seal that can be switched on and off. You gain a bonus towards climb checks.",
+				new List<decimal> { 100, 200, 300, 400, 500 },
+				new List<string> { "+1 to climb checks", "+2 to climb checks", "+3 to climb checks", "+4 to climb checks", "+5 to climb checks" },
 				0,
 				Utility);
 			new ArmorEquipment("Micrometric Tentacles",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"Up to a dozen millimeter thick tentacles are stored in the forearm and are able to extend out to 25’/8m and allow fine motor coordination and to get into small places a hand wouldn’t be able to fit.",
+				new List<decimal> { 150 },
+				new List<string> { "Built in Micrometric Tentacles" },
 				0,
 				Utility);
 			new ArmorEquipment("Microwave / EMP Shielding",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"With this shielding you gain an advantage against any microwave or EMP weapons and bursts allowing you to shrug off damage that would normally be done to your Cyberware.
+Your Cyberware gains a physical exertion bonus vs. EMP/Microwave.",
+				new List<decimal> { 1000, 2000, 3000, 4000, 5000 },
+				new List<string> { "+1 to Physical Exertion vs EMP/Microwave", "+2 to Physical Exertion vs EMP/Microwave", "+3 to Physical Exertion vs EMP/Microwave", "+4 to Physical Exertion vs EMP/Microwave", "+5 to Physical Exertion vs EMP/Microwave"},
 				0,
 				Utility);
 			new ArmorEquipment("Self Destruct",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This last ditch weapon is a bomb that is implanted in the torso of the purchaser and is set off by a mental command and detonates after one minute and covers a blast radius of twenty feet.",
+				new List<decimal> { 5000 },
+				new List<string> { "Built in Self Destruct - 20d20 Damage in a 20 ft radius" },
 				0,
 				Utility);
 			new ArmorEquipment("Weapon Link",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This jack fits into the wrist of the purchaser and another jack goes into the firearm allowing for better accuracy and better chance of critical hits.
+You gain a bonus to ranged attacks with the upgraded weapon and a minus to the number required for a critical hit. A HUD must be installed.",
+				new List<decimal> { 2000, 4000, 6000, 8000, 10000 },
+				new List<string> { "+1 to ranged attacks and -1 to Critical hit requirement with a compatible weapon, requires HUD", "+2 to ranged attacks and -2 to Critical hit requirement with a compatible weapon, requires HUD", "+3 to ranged attacks and -3 to Critical hit requirement with a compatible weapon, requires HUD", "+4 to ranged attacks and -4 to Critical hit requirement with a compatible weapon, requires HUD", "+5 to ranged attacks and -5 to Critical hit requirement with a compatible weapon, requires HUD" },
 				0,
 				Utility);
 			new ArmorEquipment("Webbing",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This can be implanted between the fingers and toes to allow for greater ease of swimming and is retractable back into the hands or feet.",
+				new List<decimal> { 600 },
+				new List<string> { "Built in Webbing" },
 				0,
 				Utility);
 //--------------------------------------------------------------------------------------------------------------------------
 			ArmorEquipment Sensors = new ArmorEquipment("Sensors",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"Never miss an opportunity with these enhancements",
+				new List<decimal> {  },
+				new List<string> {  },
 				0,
 				null);
 			new ArmorEquipment("Motion Detector",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This device can be used in conjunction with a HUD and uses a probe located in the forearm to detect vibrations in the air.",
+				new List<decimal> { 300 },
+				new List<string> { "Built in Motion Detector" },
 				0,
 				Sensors);
 			new ArmorEquipment("Radar",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This option is attached near one of the ears and sends out radar pulses to detect moving objects.
+You gain a bonus to Survival – Tracking.",
+				new List<decimal> { 100, 200, 300, 400, 500 },
+				new List<string> { "+1 to Survival tracking", "+2 to Survival tracking", "+3 to Survival tracking", "+4 to Survival tracking", "+5 to Survival tracking" },
 				0,
 				Sensors);
 			new ArmorEquipment("Sonar",
-				@"",
-				1,
-				new List<decimal> { 500 },
-				new List<string> { "" },
+				@"This operates similar to the way that a bat’s does and in complete and total darkness you are still able to maneuver around shapes via sound waves.
+You gain the ability to move around easily in the dark.",
+				new List<decimal> { 300 },
+				new List<string> { "Built in Sonar" },
 				0,
 				Sensors);
 
@@ -833,29 +780,22 @@ You gain a bonus to decrypt communications signals.",
 			RootEquipment.Add(Sensors);
 		}
 	}
-	class ArmorEquipment
+	public class ArmorEquipment
 	{
 		internal ArmorEquipment Parent;
 		internal List<ArmorEquipment> Children = new List<ArmorEquipment>();
 
 		internal string Name;
 		internal string Description;
-
-		/// <summary>
-		/// Levels represents the number of numerical levels this boost has
-		/// boosts that have only one level will use a checkbox instead of a numerical box
-		/// boosts that have 0 levels will not have options
-		/// </summary>
-		internal decimal Levels;
+		
 		internal List<decimal> Cost;
 		internal List<string> Bonuses;
 		internal decimal Weight;
 		
-		internal ArmorEquipment(string name, string desc, decimal levels, List<decimal> cost, List<string> bonuses, decimal weight, ArmorEquipment parent)
+		internal ArmorEquipment(string name, string desc, List<decimal> cost, List<string> bonuses, decimal weight, ArmorEquipment parent)
 		{
 			Name = name;
 			Description = desc;
-			Levels = levels;
 			Cost = cost;
 			Bonuses = bonuses;
 			Weight = weight;
@@ -863,12 +803,22 @@ You gain a bonus to decrypt communications signals.",
 
 			if(parent != null) Parent.Children.Add(this);
 		}
+		internal ArmorEquipment(string name, string desc, decimal cost, string bonus, decimal weight, ArmorEquipment parent)
+		{
+			Name = name;
+			Description = desc;
+			Cost = new List<decimal> { cost };
+			Bonuses = new List<string> { bonus };
+			Weight = weight;
+			Parent = parent;
+
+			if (parent != null) Parent.Children.Add(this);
+		}
 
 		internal TreeNode GetNode()
 		{
-			TreeNode t = new TreeNode(Name);
-			t.Tag = this;
-
+			TreeNode t = new ArmorEquipmentNode(this).node;
+			
 			foreach(ArmorEquipment ae in Children)
 			{
 				t.Nodes.Add(ae.GetNode());
@@ -877,10 +827,48 @@ You gain a bonus to decrypt communications signals.",
 			return t;
 		}
 	}
-	class ArmorEquipmentNode
+	public class ArmorEquipmentNode
 	{
+		internal Control ArmorControl; //This holds the armor control that will be shown in the armor generator, this is unique to each generator window because the node is
+		internal ArmorEquipment baseEquipment;
 
+		string Name
+		{
+			get
+			{
+				return node.Name;
+			}
+			set
+			{
+				node.Name = value;
+			}
+		}
+
+		internal TreeNode node;
+
+		internal ArmorEquipmentNode(ArmorEquipment equipment)
+		{
+			baseEquipment = equipment;
+			node = new TreeNode(equipment.Name);
+			node.Tag = this;
+
+			if(equipment.Cost.Count == 0)
+			{
+				ArmorControl = new Forms.SpecialGens.ArmorControls.ArmorCategoryControl(this);
+			}
+			else if(equipment.Cost.Count == 1)
+			{
+				ArmorControl = new Forms.SpecialGens.ArmorControls.ArmorEquipmentSingleLevel(this);
+			}
+			else //Has to be greater than 1
+			{
+				ArmorControl = new Forms.SpecialGens.ArmorControls.ArmorEquipmentMultiLevelControl(this);
+			}
+
+			ArmorControl.Dock = DockStyle.Fill;
+		}
 	}
+
 
 	//Turrets / Tubes
 	class TurretMark

@@ -80,6 +80,9 @@
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this._equipmentIndex = new System.Windows.Forms.TreeView();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this._bonuses = new System.Windows.Forms.TextBox();
+			this._formUpdateButton = new System.Windows.Forms.Button();
+			this._resetForm = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -92,6 +95,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -102,6 +106,8 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this._resetForm);
+			this.splitContainer1.Panel1.Controls.Add(this._formUpdateButton);
 			this.splitContainer1.Panel1.Controls.Add(this._exoSkeleton);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
 			this.splitContainer1.Panel1.Controls.Add(this.label14);
@@ -123,7 +129,7 @@
 			// _exoSkeleton
 			// 
 			this._exoSkeleton.AutoSize = true;
-			this._exoSkeleton.Location = new System.Drawing.Point(107, 350);
+			this._exoSkeleton.Location = new System.Drawing.Point(108, 328);
 			this._exoSkeleton.Name = "_exoSkeleton";
 			this._exoSkeleton.Size = new System.Drawing.Size(112, 17);
 			this._exoSkeleton.TabIndex = 2;
@@ -352,7 +358,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(46, 373);
+			this.label14.Location = new System.Drawing.Point(47, 351);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(56, 13);
 			this.label14.TabIndex = 10;
@@ -360,7 +366,7 @@
 			// 
 			// _initsToDon
 			// 
-			this._initsToDon.Location = new System.Drawing.Point(108, 370);
+			this._initsToDon.Location = new System.Drawing.Point(109, 348);
 			this._initsToDon.Name = "_initsToDon";
 			this._initsToDon.ReadOnly = true;
 			this._initsToDon.Size = new System.Drawing.Size(114, 20);
@@ -369,7 +375,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(47, 451);
+			this.label2.Location = new System.Drawing.Point(48, 429);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(55, 13);
 			this.label2.TabIndex = 5;
@@ -378,7 +384,7 @@
 			// label654654
 			// 
 			this.label654654.AutoSize = true;
-			this.label654654.Location = new System.Drawing.Point(54, 399);
+			this.label654654.Location = new System.Drawing.Point(55, 377);
 			this.label654654.Name = "label654654";
 			this.label654654.Size = new System.Drawing.Size(47, 13);
 			this.label654654.TabIndex = 7;
@@ -387,7 +393,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(34, 425);
+			this.label1.Location = new System.Drawing.Point(35, 403);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(68, 13);
 			this.label1.TabIndex = 4;
@@ -395,7 +401,7 @@
 			// 
 			// _totalCost
 			// 
-			this._totalCost.Location = new System.Drawing.Point(108, 448);
+			this._totalCost.Location = new System.Drawing.Point(109, 426);
 			this._totalCost.Name = "_totalCost";
 			this._totalCost.ReadOnly = true;
 			this._totalCost.Size = new System.Drawing.Size(114, 20);
@@ -403,7 +409,7 @@
 			// 
 			// _totalWeight
 			// 
-			this._totalWeight.Location = new System.Drawing.Point(108, 422);
+			this._totalWeight.Location = new System.Drawing.Point(109, 400);
 			this._totalWeight.Name = "_totalWeight";
 			this._totalWeight.ReadOnly = true;
 			this._totalWeight.Size = new System.Drawing.Size(114, 20);
@@ -411,7 +417,7 @@
 			// 
 			// _defense
 			// 
-			this._defense.Location = new System.Drawing.Point(107, 396);
+			this._defense.Location = new System.Drawing.Point(108, 374);
 			this._defense.Name = "_defense";
 			this._defense.ReadOnly = true;
 			this._defense.Size = new System.Drawing.Size(114, 20);
@@ -428,6 +434,7 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(839, 505);
 			this.tabControl1.TabIndex = 0;
+			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -705,6 +712,7 @@
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this._bonuses);
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -712,6 +720,36 @@
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Bonuses";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// _bonuses
+			// 
+			this._bonuses.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._bonuses.Location = new System.Drawing.Point(3, 3);
+			this._bonuses.Multiline = true;
+			this._bonuses.Name = "_bonuses";
+			this._bonuses.ReadOnly = true;
+			this._bonuses.Size = new System.Drawing.Size(825, 473);
+			this._bonuses.TabIndex = 0;
+			// 
+			// _formUpdateButton
+			// 
+			this._formUpdateButton.Location = new System.Drawing.Point(129, 470);
+			this._formUpdateButton.Name = "_formUpdateButton";
+			this._formUpdateButton.Size = new System.Drawing.Size(94, 23);
+			this._formUpdateButton.TabIndex = 11;
+			this._formUpdateButton.Text = "Update Values";
+			this._formUpdateButton.UseVisualStyleBackColor = true;
+			this._formUpdateButton.Click += new System.EventHandler(this._formUpdateButton_Click);
+			// 
+			// _resetForm
+			// 
+			this._resetForm.Location = new System.Drawing.Point(12, 470);
+			this._resetForm.Name = "_resetForm";
+			this._resetForm.Size = new System.Drawing.Size(75, 23);
+			this._resetForm.TabIndex = 1;
+			this._resetForm.Text = "Reset Form";
+			this._resetForm.UseVisualStyleBackColor = true;
+			this._resetForm.Click += new System.EventHandler(this._resetForm_Click);
 			// 
 			// Armor
 			// 
@@ -736,6 +774,8 @@
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.tabPage3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -794,5 +834,8 @@
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.TreeView _equipmentIndex;
+		private System.Windows.Forms.TextBox _bonuses;
+		private System.Windows.Forms.Button _resetForm;
+		private System.Windows.Forms.Button _formUpdateButton;
 	}
 }

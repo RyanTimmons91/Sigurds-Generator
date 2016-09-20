@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://dl.dropboxusercontent.com/u/9690967/SoftwareUpdates/StarSystemGenerator/Publish/</InstallUrl>
-    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationRevision>33</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -167,11 +167,23 @@
     <Compile Include="Forms\SpecialGens\Armor.Designer.cs">
       <DependentUpon>Armor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SpecialGens\ArmorControls\ArmorCategoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ArmorControls\ArmorCategoryControl.Designer.cs">
+      <DependentUpon>ArmorCategoryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentMultiLevelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentMultiLevelControl.Designer.cs">
       <DependentUpon>ArmorEquipmentMultiLevelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentSingleLevel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentSingleLevel.Designer.cs">
+      <DependentUpon>ArmorEquipmentSingleLevel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SpecialGens\HandheldWeapons.cs">
       <SubType>Form</SubType>
@@ -270,8 +282,14 @@
     <EmbeddedResource Include="Forms\SpecialGens\Armor.resx">
       <DependentUpon>Armor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\ArmorControls\ArmorCategoryControl.resx">
+      <DependentUpon>ArmorCategoryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentMultiLevelControl.resx">
       <DependentUpon>ArmorEquipmentMultiLevelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialGens\ArmorControls\ArmorEquipmentSingleLevel.resx">
+      <DependentUpon>ArmorEquipmentSingleLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpecialGens\HandheldWeapons.resx">
       <DependentUpon>HandheldWeapons.cs</DependentUpon>
