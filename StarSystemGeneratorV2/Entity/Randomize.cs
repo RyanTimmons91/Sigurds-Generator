@@ -429,30 +429,52 @@ namespace StarSystemGeneratorV2.Generator
 
 		#endregion
 
+		//Generators
+
 		#region Solar System Generators
 		internal StarSystemTypes StarSystemType()
 		{
+#if DEBUG
+			LogF.WriteLine("Get Star System Type");
+#endif
+
 			return GenerateRandom(StarSystemTypesArray);
 		}
 
 		internal HyperSpaceGateTypes HyperSpaceGateStatus()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Hyperspace Gate"); 
+#endif
+
 			return GenerateRandom(HyperSpaceGateTypesArray);
 		}
 
 		internal StarTypes StarType()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Star Type"); 
+#endif
+
 			return GenerateRandom(StarTypesArray);
 		}
 
 		internal SystemSizeTypes SystemSize()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen System Size"); 
+#endif
+
 			return GenerateRandom(SolarSystemSizeTypesArray);
 		}
 
 		internal int NumberOfPlanets(SystemSizeTypes SystemSize)
 		{
-			switch(SystemSize)
+#if DEBUG
+			LogF.WriteLine("Gen Number of Plnaets for " + SystemSize.ToString()); 
+#endif
+
+			switch (SystemSize)
 			{
 				case SystemSizeTypes.Medium:
 					return diceHelper.D6() + 4;
@@ -471,16 +493,24 @@ namespace StarSystemGeneratorV2.Generator
 
 		internal CelestialBodyCategories CelestialBodyCategory()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Celestial Body Category"); 
+#endif
+
 			return GenerateRandom(SystemCelestialBodyCategoriesArray);
 		}
 
 		internal CelestialBodyTypes[] CelestialBodies()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Celestial Bodies"); 
+#endif
+
 			List<CelestialBodyTypes> RandomCelestialBodies = new List<CelestialBodyTypes>();
 
 			CelestialBodyCategories CBC = CelestialBodyCategory();
 
-			switch(CBC)
+			switch (CBC)
 			{
 				case CelestialBodyCategories.None:
 					break;
@@ -507,15 +537,23 @@ namespace StarSystemGeneratorV2.Generator
 
 			return RandomCelestialBodies.ToArray();
 		}
-		#endregion
+#endregion
 
 		#region Planet and Moon Generators
 		internal PlanetMoonSizes PlanetSize()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Planet Size"); 
+#endif
+
 			return GenerateRandom(PlanetSizeArray);
 		}
 		internal PlanetMoonSizes MoonSize(PlanetMoonSizes ParentSize)
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Moon Size"); 
+#endif
+
 			PlanetMoonSizes RandomSize = GenerateRandom(MoonSizeArray); //Pick a random moon size
 
 			if (ParentSize - RandomSize < 2) RandomSize = ParentSize - 2; //If we are not at least two planet sizes away we need to jump to two planet sizes below the host
@@ -525,23 +563,32 @@ namespace StarSystemGeneratorV2.Generator
 
 		internal GasGiantStatus GasGiantCheck()
 		{
+#if DEBUG
+			LogF.WriteLine("Gas Giant Check"); 
+#endif
+
 			return GenerateRandom(GasGiantTypeArray);
 		}
 		internal AtmosphereTypes[] GasGiantOtherAtmospheres()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Gas Giant Other Atmospheres"); 
+#endif
+
 			List<AtmosphereTypes> Atmospheres = new List<AtmosphereTypes>();
 
 			AtmosphereTypes A2 = AtmosphereTypes.None;
 
-			for(int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; i++)
 			{
-				do {
-					A2 = GenerateRandom(GasGiantAtmospheresArray);
-				} while(Atmospheres.Contains(A2));
-
-				if(A2 == AtmosphereTypes.Helium)
+				do
 				{
-					if(GenerateRandom(HE3CheckArray))
+					A2 = GenerateRandom(GasGiantAtmospheresArray);
+				} while (Atmospheres.Contains(A2));
+
+				if (A2 == AtmosphereTypes.Helium)
+				{
+					if (GenerateRandom(HE3CheckArray))
 						A2 = AtmosphereTypes.HE3;
 				}
 
@@ -550,9 +597,13 @@ namespace StarSystemGeneratorV2.Generator
 
 			return Atmospheres.ToArray();
 		}
-		
+
 		internal UniquePlanetAspects[] UniquePlanetaryAspects()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen unique Aspects"); 
+#endif
+
 			List<UniquePlanetAspects> UPAList = new List<UniquePlanetAspects>();
 
 			UniquePlanetAspects UPA = GenerateRandom(PlanetaryUniqueAspectArray);
@@ -574,16 +625,20 @@ namespace StarSystemGeneratorV2.Generator
 
 			return UPAList.ToArray();
 		}
-		
+
 		internal AtmosphereTypes PlanetAtmosphere()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Planet Atmosphere"); 
+#endif
+
 			AtmosphereTypes AT = GenerateRandom(PlanetMoonAtmosphereArray);
 
-			if(AT == AtmosphereTypes.None)
+			if (AT == AtmosphereTypes.None)
 			{
 				AT = GenerateRandom(NoAtmosphereReasonArray);
 			}
-			else if(AT == AtmosphereTypes.Other)
+			else if (AT == AtmosphereTypes.Other)
 			{
 				AT = GenerateRandom(PlanetMoonOtherAtmosphereArray);
 
@@ -598,12 +653,20 @@ namespace StarSystemGeneratorV2.Generator
 
 		internal Temperatures Temperature()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen temperature"); 
+#endif
+
 			return GenerateRandom(PlanetMoonTemperatureArray);
 		}
 
 		internal Ecologies Ecology(Temperatures temp)
 		{
-			switch(temp)
+#if DEBUG
+			LogF.WriteLine("Gen Ecology for " + temp.ToString()); 
+#endif
+
+			switch (temp)
 			{
 				case Temperatures.ExtremelyHot:
 					return GenerateRandom(ExtremelyHotEcologyArray);
@@ -625,16 +688,28 @@ namespace StarSystemGeneratorV2.Generator
 		#region Resource Generators
 		internal int NumberOfResources()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Number of Resources"); 
+#endif
+
 			return GenerateRandom(NumberOfResourcesArray);
 		}
 
 		internal DepositTypes DepositType()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Deposit Type"); 
+#endif
+
 			return GenerateRandom(DepositTypesArray);
 		}
 
 		internal ResourceTypes ResourceType()
 		{
+#if DEBUG
+			LogF.WriteLine("Gen Resource Types"); 
+#endif
+
 			return GenerateRandom(ResourceTypesArray);
 		}
 		#endregion
@@ -642,7 +717,11 @@ namespace StarSystemGeneratorV2.Generator
 		#region Civilization Generators
 		internal bool LivingCivilizationCheck()
 		{
-			switch(GenVersion)
+#if DEBUG
+			LogF.WriteLine("Living Civ Check V" + GenVersion); 
+#endif
+
+			switch (GenVersion)
 			{
 				case 14:
 				case 15:
@@ -653,11 +732,15 @@ namespace StarSystemGeneratorV2.Generator
 				default: //default to newer generator
 					return GenerateRandom(LivingCivilizationArray18);
 			}
-			
+
 		}
 
 		internal bool LostCivilizationCheck()
 		{
+#if DEBUG
+			LogF.WriteLine("Lost Civ Check V" + GenVersion); 
+#endif
+
 			switch (GenVersion)
 			{
 				case 14:
@@ -673,11 +756,19 @@ namespace StarSystemGeneratorV2.Generator
 
 		internal TechLevels CivilizationTechLevel()
 		{
+#if DEBUG
+			LogF.WriteLine("Civ Tech"); 
+#endif
+
 			return GenerateRandom(TechLevelArray);
 		}
 
 		internal TechLevels GasGiantLostCivilizationTechLevel()
 		{
+#if DEBUG
+			LogF.WriteLine("Gas Giant Lost Civ"); 
+#endif
+
 			return GenerateRandom(GasGiantTechLevelArray);
 		}
 
@@ -686,7 +777,7 @@ namespace StarSystemGeneratorV2.Generator
 		//TOOD Need to do additional Colony Generation Methods
 
 		#endregion
-		
+
 		dynamic GenerateRandom(SRandomize[] array)
 		{
 			int DieSize = array[array.Length-1].MaxDieRoll;

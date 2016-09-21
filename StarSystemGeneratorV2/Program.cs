@@ -9,6 +9,8 @@ namespace StarSystemGeneratorV2
 {
 	static class Program
 	{
+		internal static LogF logForm;
+
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -44,7 +46,20 @@ namespace StarSystemGeneratorV2
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+
+			logForm = new LogF();
+
 			Application.Run(new SystemGeneratorForm());
+		}
+
+		static void Log(string s)
+		{
+			LogF.WriteLine(s);
+		}
+		static void Log(Exception e)
+		{
+			LogF.WriteLine(e.Message);
+			LogF.WriteLine(e.StackTrace);
 		}
 	}
 }

@@ -71,6 +71,8 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 
 		internal StarSystem(int genVersion, int sysNumber)
 		{
+			//LogF.WriteLine("Generator Initialization");
+
 			_VersionNumber = genVersion;
 			
 			if(sysNumber == 0)
@@ -84,8 +86,10 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				_SystemNumber = sysNumber;
 			}
 
-			Generator._GenVersion = _VersionNumber;
+			//LogF.WriteLine("Generation Initialized for system number " + sysNumber + " version " + genVersion);
 
+			Generator._GenVersion = _VersionNumber;
+			
 			Generate();
 
 			StarSystems.Add(this);

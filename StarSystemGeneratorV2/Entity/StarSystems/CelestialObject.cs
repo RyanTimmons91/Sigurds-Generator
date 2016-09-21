@@ -24,9 +24,34 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				{
 					NodeObject no = new NodeObject(this, "Cel.Obj. " + Type.ToString() + TextString);
 
+					List<NodeObject> ResourceSectors = new List<NodeObject>();
+					List<NodeObject> BaseNodes = new List<NodeObject>();
+
 					foreach (SystemEntity se in ChildEntities)
 					{
-						no.Node.Nodes.Add(se.Node.Node);
+						if(se.EntityType == EntityTypes.ResourceSector)
+						{
+							ResourceSectors.Add(se.Node);
+						}
+						else
+						{
+							BaseNodes.Add(se.Node);
+						}
+					}
+
+					if(ResourceSectors.Count > 0)
+					{
+						TreeNode ResourceNode = no.Node.Nodes.Add("Resource Sectors");
+
+						foreach (NodeObject resourceNode in ResourceSectors)
+						{
+							ResourceNode.Nodes.Add(resourceNode.Node);
+						}
+					}
+
+					foreach(NodeObject basenode in BaseNodes)
+					{
+						no.Node.Nodes.Add(basenode.Node);
 					}
 
 					_Node = no;
@@ -49,11 +74,33 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 				int count = Generator.diceHelper.D20();
 				TextString = " " + count;
 			}
+
+			switch(Type)
+			{
+				case CelestialBodyTypes.KuiperBelt:
+				case CelestialBodyTypes.OortCloud:
+				case CelestialBodyTypes.AsteroidBelt:
+				case CelestialBodyTypes.AsteroidCloud:
+					Generate();
+					break;
+			}
 		}
 
 		internal override void Generate()
 		{
-			throw new NotImplementedException();
+			for (int i = 0; i < 8; i++)
+			{
+				int ResourceCount = Generator.NumberOfResources();
+
+				for (int i2 = 0; i2 < ResourceCount; i2++)
+				{
+					DepositTypes dt = Generator.DepositType();
+					if (dt != DepositTypes.None)
+					{
+						ChildEntities.Add(new Resource(this, dt));
+					}
+				}
+			}
 		}
 	}
 }

@@ -23,8 +23,6 @@ namespace StarSystemGeneratorV2
 		{
 			Seed = seed;
 			random = new Random(seed);
-
-			//Dump1Mil();
 		}
 		public DiceHelper()
 		{
@@ -42,16 +40,6 @@ namespace StarSystemGeneratorV2
 			Seed = int.Parse("" + i1 + i3 + i3 + i4 + i5 + i6 + i7 + i8 + i9);
 
 			random = new Random(Seed);
-
-			//Dump1Mil();
-		}
-
-		void Dump1Mil()
-		{
-			for (int i = 0; i < 1000000; i++)
-			{
-				D20();
-			}
 		}
 
 		/// <summary>
@@ -122,6 +110,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns a random number from 1-100</returns>
 		public int Percentage()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll Percentage"); 
+#endif
+
 			return Roll(100);
 		}
 
@@ -131,6 +123,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D2()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D2"); 
+#endif
+
 			return Roll(2);
 		}
 		/// <summary>
@@ -149,6 +145,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D3()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D3"); 
+#endif
+
 			return Roll(3);
 		}
 		/// <summary>
@@ -167,6 +167,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D4()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D4"); 
+#endif
+
 			return Roll(4);
 		}
 		/// <summary>
@@ -185,6 +189,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D6()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D6"); 
+#endif
+
 			return Roll(6);
 		}
 		/// <summary>
@@ -203,6 +211,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D8()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D8"); 
+#endif
+
 			return Roll(8);
 		}
 		/// <summary>
@@ -221,6 +233,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D10()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D10"); 
+#endif
+
 			return Roll(10);
 		}
 		/// <summary>
@@ -239,6 +255,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D12()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D12"); 
+#endif
+
 			return Roll(12);
 		}
 		/// <summary>
@@ -257,6 +277,10 @@ namespace StarSystemGeneratorV2
 		/// <returns>Returns the results of the die roll</returns>
 		public int D20()
 		{
+#if DEBUG
+			LogF.WriteLine("Roll D20"); 
+#endif
+
 			return Roll(20);
 		}
 		/// <summary>

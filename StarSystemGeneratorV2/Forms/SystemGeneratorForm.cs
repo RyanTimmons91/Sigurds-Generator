@@ -245,5 +245,16 @@ namespace StarSystemGeneratorV2
 			}
 		}
 
+		private void logToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Program.logForm.Show();
+		}
+
+		private void SystemGeneratorForm_Load(object sender, EventArgs e)
+		{
+#if !DEBUG
+			logToolStripMenuItem.Visible = false;
+#endif
+		}
 	}
 }

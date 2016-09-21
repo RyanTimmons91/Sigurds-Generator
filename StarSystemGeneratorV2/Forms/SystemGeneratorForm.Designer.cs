@@ -50,6 +50,7 @@
 			this.resourceCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.shipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.weaponCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._0SystemNumber = new System.Windows.Forms.Button();
 			this._versionGen = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
@@ -170,7 +171,8 @@
             this.infoToolStripMenuItem,
             this.clearToolStripMenuItem,
             this._diceRoller,
-            this.specialGeneratorsToolStripMenuItem});
+            this.specialGeneratorsToolStripMenuItem,
+            this.logToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(533, 24);
@@ -270,6 +272,13 @@
 			this.weaponCostToolStripMenuItem.Text = "Vehicle Weapon Cost";
 			this.weaponCostToolStripMenuItem.Click += new System.EventHandler(this.weaponCostToolStripMenuItem_Click);
 			// 
+			// logToolStripMenuItem
+			// 
+			this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+			this.logToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.logToolStripMenuItem.Text = "Log";
+			this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
+			// 
 			// _0SystemNumber
 			// 
 			this._0SystemNumber.Location = new System.Drawing.Point(305, 27);
@@ -348,6 +357,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "SystemGeneratorForm";
 			this.Text = "Sigurds Universe Generator System";
+			this.Load += new System.EventHandler(this.SystemGeneratorForm_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -394,6 +404,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox _highlightComboBox;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
 	}
 }
 

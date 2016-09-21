@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://dl.dropboxusercontent.com/u/9690967/SoftwareUpdates/StarSystemGenerator/Publish/</InstallUrl>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -240,6 +240,12 @@
     <Compile Include="Forms\SpecialGens\VehicleWeapon.Designer.cs">
       <DependentUpon>VehicleWeapon.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogF.Designer.cs">
+      <DependentUpon>LogF.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaterialWeightCost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -317,6 +323,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpecialGens\VehicleWeapon.resx">
       <DependentUpon>VehicleWeapon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogF.dje.resx">
+      <DependentUpon>LogF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogF.resx">
+      <DependentUpon>LogF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
