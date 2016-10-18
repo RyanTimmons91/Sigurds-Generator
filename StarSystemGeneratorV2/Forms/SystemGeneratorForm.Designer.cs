@@ -33,6 +33,8 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this._systemTreeView = new System.Windows.Forms.TreeView();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this._encounterCheck = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this._globalSystemNumber = new System.Windows.Forms.TextBox();
 			this._dynamicPanel = new System.Windows.Forms.Panel();
@@ -56,6 +58,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this._highlightComboBox = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -117,6 +120,8 @@
 			// 
 			// splitContainer2.Panel1
 			// 
+			this.splitContainer2.Panel1.Controls.Add(this._encounterCheck);
+			this.splitContainer2.Panel1.Controls.Add(this.label4);
 			this.splitContainer2.Panel1.Controls.Add(this.label1);
 			this.splitContainer2.Panel1.Controls.Add(this._globalSystemNumber);
 			// 
@@ -127,10 +132,29 @@
 			this.splitContainer2.SplitterDistance = 58;
 			this.splitContainer2.TabIndex = 0;
 			// 
+			// _encounterCheck
+			// 
+			this._encounterCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this._encounterCheck.Location = new System.Drawing.Point(62, 25);
+			this._encounterCheck.Name = "_encounterCheck";
+			this._encounterCheck.ReadOnly = true;
+			this._encounterCheck.Size = new System.Drawing.Size(41, 31);
+			this._encounterCheck.TabIndex = 3;
+			this._encounterCheck.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(3, 37);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(56, 13);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "Encounter";
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(19, 29);
+			this.label1.Location = new System.Drawing.Point(19, 3);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(84, 13);
 			this.label1.TabIndex = 1;
@@ -144,6 +168,7 @@
 			this._globalSystemNumber.ReadOnly = true;
 			this._globalSystemNumber.Size = new System.Drawing.Size(194, 51);
 			this._globalSystemNumber.TabIndex = 0;
+			this._globalSystemNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// _dynamicPanel
 			// 
@@ -164,6 +189,7 @@
 			this._seedBox.Name = "_seedBox";
 			this._seedBox.Size = new System.Drawing.Size(120, 20);
 			this._seedBox.TabIndex = 4;
+			this._seedBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// menuStrip1
 			// 
@@ -172,7 +198,8 @@
             this.clearToolStripMenuItem,
             this._diceRoller,
             this.specialGeneratorsToolStripMenuItem,
-            this.logToolStripMenuItem});
+            this.logToolStripMenuItem,
+            this.testToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(533, 24);
@@ -338,6 +365,13 @@
 			this.label3.TabIndex = 13;
 			this.label3.Text = "Highlight:";
 			// 
+			// testToolStripMenuItem
+			// 
+			this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+			this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+			this.testToolStripMenuItem.Text = "Test";
+			this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+			// 
 			// SystemGeneratorForm
 			// 
 			this.AcceptButton = this._GenerateButton;
@@ -405,6 +439,9 @@
 		private System.Windows.Forms.ComboBox _highlightComboBox;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
+		private System.Windows.Forms.TextBox _encounterCheck;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
 	}
 }
 

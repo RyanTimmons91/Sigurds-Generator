@@ -32,32 +32,51 @@ namespace StarSystemGeneratorV2.EntityControls
 				}
 				else if(se.EntityType == EntityTypes.Star)
 				{
-					//Planets += st.Planets.Length; //All Planets
+                    Star star = (Star)se;
+                    
+                    foreach (SystemEntity entity in star.ChildEntities)
+                    {
+                        if (entity.EntityType == EntityTypes.GasGiant)
+                        {
+                            Planets++;
+                            Planet giant = (Planet)entity;
+                            if (giant.gasAtmospheres.Contains(AtmosphereTypes.HE3))
+                            {
+                                HE3++;
+                            }
 
-					//foreach(Planet p in st.Planets)
-					//{
-					//	if(p.isGasGiant)
-					//	{
-					//		//IS A GAS GIANT
-					//		if (p.GasGiantAtmospheres.Contains(AtmosphereTypes.HE3))
-					//		{
-					//			HE3++; //ALL HE3
-					//		}
-					//	}
-					//	else
-					//	{
-					//		//NOT A GAS GIANT
-					//		if (p.entityAtmosphere == AtmosphereTypes.Oxygen) OxygenPlanets++; //OXYGEN ATMO
-					//		if (p.entityAtmosphere == AtmosphereTypes.OxygenMethane) OxyMethPlanets++; //OXYMETH ATMO
-					//	}
+                            foreach (SystemEntity child in giant.ChildEntities)
+                            {
+                                if (child.EntityType == EntityTypes.Moon)
+                                {
+                                    Moon moon = (Moon)child;
+                                    if (moon.entityAtmosphere_Final == AtmosphereTypes.HE3) HE3++;
+                                    if (moon.entityAtmosphere_Final == AtmosphereTypes.Oxygen) OxygenPlanets++;
+                                    if (moon.entityAtmosphere_Final == AtmosphereTypes.OxygenMethane) OxyMethPlanets++;
+                                }
+                            }
+                        }
+                        if (entity.EntityType == EntityTypes.Planet)
+                        {
+                            Planets++;
+                            Planet planet = (Planet)entity;
+                            if (planet.entityAtmosphere_Final == AtmosphereTypes.HE3) HE3++;
+                            if (planet.entityAtmosphere_Final == AtmosphereTypes.Oxygen) OxygenPlanets++;
+                            if (planet.entityAtmosphere_Final == AtmosphereTypes.OxygenMethane) OxyMethPlanets++;
 
-					//	foreach(Moon m in p.Moons)
-					//	{
-					//		if (m.entityAtmosphere == AtmosphereTypes.Oxygen) OxygenPlanets++; //OXYGEN ATMO
-					//		if (m.entityAtmosphere == AtmosphereTypes.OxygenMethane) OxyMethPlanets++; //OXYMETH ATMO
-					//	}
-					//}
-				}
+                            foreach (SystemEntity child in planet.ChildEntities)
+                            {
+                                if (child.EntityType == EntityTypes.Moon)
+                                {
+                                    Moon moon = (Moon)child;
+                                    if (moon.entityAtmosphere_Final == AtmosphereTypes.HE3) HE3++;
+                                    if (moon.entityAtmosphere_Final == AtmosphereTypes.Oxygen) OxygenPlanets++;
+                                    if (moon.entityAtmosphere_Final == AtmosphereTypes.OxygenMethane) OxyMethPlanets++;
+                                }
+                            }
+                        }
+                    }
+                }
 			}
 
 			_HE3CountBox.Text = HE3.ToString();
@@ -66,5 +85,10 @@ namespace StarSystemGeneratorV2.EntityControls
 			_planetCountBox.Text = Planets.ToString();
 
 		}
-	}
+
+        private void StarSystemControl_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

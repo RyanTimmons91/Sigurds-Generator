@@ -35,8 +35,19 @@ namespace StarSystemGeneratorV2.EntityControls
 					if(giant.gasAtmospheres.Contains(AtmosphereTypes.HE3))
 					{
 						HE3++;
-					}
-				}
+                    }
+
+                    foreach (SystemEntity child in giant.ChildEntities)
+                    {
+                        if (child.EntityType == EntityTypes.Moon)
+                        {
+                            Moon moon = (Moon)child;
+                            if (moon.entityAtmosphere_Final == AtmosphereTypes.HE3) HE3++;
+                            if (moon.entityAtmosphere_Final == AtmosphereTypes.Oxygen) OxygenPlanets++;
+                            if (moon.entityAtmosphere_Final == AtmosphereTypes.OxygenMethane) OxyMethPlanets++;
+                        }
+                    }
+                }
 				if (entity.EntityType == EntityTypes.Planet)
 				{
 					Planets++;
@@ -64,5 +75,10 @@ namespace StarSystemGeneratorV2.EntityControls
 			_planetCountBox.Text = Planets.ToString();
 
 		}
-	}
+
+        private void StarControl_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

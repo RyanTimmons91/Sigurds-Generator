@@ -38,8 +38,8 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 
 		internal CivilizationTypes CivType;
 		
-		TechLevels CivilizationTechLevel;
-		int IntactPercent = 100;
+		internal TechLevels CivilizationTechLevel;
+		internal int IntactPercent = 100;
 
 		internal Civilization(SystemEntity parent, CivilizationTypes civtype, TechLevels tech)
 		{

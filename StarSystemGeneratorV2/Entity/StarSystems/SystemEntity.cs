@@ -12,7 +12,7 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 	{
 		internal List<SystemEntity> StarSystems = new List<SystemEntity>();
 
-		internal static HighlightTypes _highlightType = HighlightTypes.None;
+        internal static HighlightTypes _highlightType = HighlightTypes.None;
 		internal static HighlightTypes HighlightType
 		{
 			get
@@ -22,37 +22,8 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 			set
 			{
 				_highlightType = value;
-
-				if(_highlightType == HighlightTypes.None)
-				{
-					C1 = Color.Empty;
-					C2 = Color.Empty;
-					C3 = Color.Empty;
-					C4 = Color.Empty;
-					COverride = Color.Empty;
-				}
-				if(_highlightType == HighlightTypes.LostColony)
-				{
-					C1 = Color.Green; //Lost Civ Found of HyperSpace or Civ Level
-					C2 = Color.Yellow; //Lost Civ Found but its <50% intact
-					C3 = Color.Orange; //Not Worth Exploring
-					C4 = Color.Salmon; //Life exists on a planet
-				}
-				if(_highlightType == HighlightTypes.ReadyForColonization)
-				{
-					C1 = Color.Green; //Oxygen planet with Great stats
-					C2 = Color.Yellow; //Oxygen planet with Good stats
-					C3 = Color.Orange; //Oxygen planet with OK stats
-					C4 = Color.Purple; //Oxygen planet, extreme stats
-					COverride = Color.Salmon; //Life Exists in this star system
-				}
 			}
 		}
-		internal static Color C1 = Color.Empty;
-		internal static Color C2 = Color.Empty;
-		internal static Color C3 = Color.Empty;
-		internal static Color C4 = Color.Empty;
-		internal static Color COverride = Color.Empty;
 
 		internal abstract EntityTypes EntityType
 		{
@@ -62,6 +33,37 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 		{
 			get;
 		}
+
+        internal Color seColor
+        {
+            get
+            {
+                return Node.Node.BackColor;
+            }
+            set
+            {
+                Node.Node.BackColor = value;
+            }
+        }
+        internal AtmosphereTypes PlanetMoonAtmosphere
+        {
+            get
+            {
+                if(EntityType == EntityTypes.Planet)
+                {
+                    Planet se = (Planet)this;
+                    return se.entityAtmosphere_Final;
+                }
+                if(EntityType == EntityTypes.Moon)
+                {
+                    Moon se = (Moon)this;
+                    return se.entityAtmosphere_Final;
+                }
+
+                return AtmosphereTypes.None;
+            }
+        }
+
 
 		internal SystemEntity ParentEntity = null; //This is the Star System that this Entity Resides in
 
@@ -96,108 +98,178 @@ namespace StarSystemGeneratorV2.Entity.StarSystems
 		{
 			if (HighlightType == HighlightTypes.None)
 			{
-				RemoveColorization();
+                RemoveAllSystemColorization();
 			}
 
 			if(HighlightType == HighlightTypes.ReadyForColonization)
 			{
-				highlightColonization();
+                HighlightSystemForColonization();
 			}
 
 			if(HighlightType == HighlightTypes.LostColony)
 			{
-				highlightLostColony();
+                LogF.WriteLine("Start");
+                HighlighLostColonies();
 			}
 		}
 
-		void RemoveColorization()
+		void RemoveAllSystemColorization()
 		{
 			//Root Node
 			SystemEntity se = this;
 			while (se.ParentEntity != null)
 				se = se.ParentEntity;
 
-			RemoveColors(se);
+            ColorAll(se, Color.Empty);
 		}
-		void RemoveColors(SystemEntity se)
-		{
-			se.Node.Node.BackColor = Color.Empty;
+        void HighlightSystemForColonization()
+        {
+            //Get root 'System' Node
+            SystemEntity se = this;
+            while (se.ParentEntity != null)
+                se = se.ParentEntity;
+            
+            foreach (SystemEntity childSE in se.ChildEntities)
+            {
+                OxygenSearch(childSE);
 
-			foreach (SystemEntity se2 in se.ChildEntities)
-				RemoveColors(se2);
-		}
+                if(LifeSearch(childSE))
+                {
+                    ColorAll(childSE, Color.Red);
+                }
+            }
+        }
+        void HighlighLostColonies()
+        {
+            LogF.WriteLine("Begin");
 
-		void highlightColonization()
-		{
-			bool OverrideTriggered = false;
+            //Get root 'System' Node
+            SystemEntity se = this;
+            while (se.ParentEntity != null)
+                se = se.ParentEntity;
 
-			//Root Node
-			SystemEntity se = this;
-			while (se.ParentEntity != null)
-				se = se.ParentEntity;
+            foreach (SystemEntity childSE in se.ChildEntities)
+            {
+                LostColonySearch(childSE);
+            }
+        }
+        
+        //SearchMethods
+        static bool LifeSearch(SystemEntity se) //Returns true if life is found at or below this entity
+        {
+            if (se.EntityType == EntityTypes.Civilization)
+            {
+                Civilization civ = (Civilization)se;
+                if (civ.CivType == CivilizationTypes.Living)
+                {
+                    return true;
+                }
+            }
 
-			//Star nodes
-			List<SystemEntity> stars = new List<SystemEntity>();
-			foreach(SystemEntity starse in se.ChildEntities)
-			{
-				if (starse.EntityType == EntityTypes.Star) stars.Add(starse);
-			}
+            foreach (SystemEntity cEntity in se.ChildEntities)
+            {
+                if (LifeSearch(cEntity))
+                {
+                    return true;
+                }
+            }
 
-			//Loop Though each star looking for life
-			foreach(Star s in stars)
-			{
-				bool CivFound = SearchForLife(s);
-				
-				if(CivFound)
-				{
-					OverrideTriggered = true;
-					colorizeStarWithLife(s);
-				}
-				else
-				{
-					colorizeColonization(s);
-				}
-			}
+            return false;
+        }
+        static void OxygenSearch(SystemEntity se)
+        {
+            if(se.PlanetMoonAtmosphere == AtmosphereTypes.Oxygen)
+            {
+                ColorUp(se, Color.Cyan);
 
-			//if (OverrideTriggered) se.Node.Node.BackColor = Color.LightCyan;
-		}
-		bool SearchForLife(SystemEntity entity)
-		{
-			if(entity.EntityType == EntityTypes.Civilization)
-			{
-				Civilization civ = (Civilization)entity;
-				if(civ.CivType == CivilizationTypes.Living)
-				{
-					return true;
-				}
-			}
+                if (se.ParentEntity != null && se.ParentEntity.PlanetMoonAtmosphere == AtmosphereTypes.Oxygen)
+                {
+                    se.ParentEntity.seColor = Color.Salmon;
+                }
+            }
 
-			foreach (SystemEntity cEntity in entity.ChildEntities)
-			{
-				if (SearchForLife(cEntity))
-				{
-					return true;
-				}
-			}
+            foreach (SystemEntity cEntity in se.ChildEntities)
+            {
+                OxygenSearch(cEntity);
+            }
+        }
+        static void LostColonySearch(SystemEntity se)
+        {
+            LogF.WriteLine("Start Search");
 
-			return false;
-		}
-		void colorizeStarWithLife(SystemEntity entity)
-		{
-			entity.Node.Node.BackColor = COverride;
+            TechLevels tl = LostColonyCheck(se);
 
-			foreach (SystemEntity e in entity.ChildEntities) colorizeStarWithLife(e);
-		}
-		void colorizeColonization(SystemEntity entity)
-		{
-			
+            if (tl != TechLevels.None) //We have a lost civ!
+            {
+                if (tl == TechLevels.ColonizationAge || tl == TechLevels.HyperspaceRevolution)
+                {
+                    LogF.WriteLine("Color Up green");
+                    ColorUp(se, Color.Green);
 
-			foreach (SystemEntity e in entity.ChildEntities) colorizeColonization(e);
-		}
+                }
+                else
+                {
+                    LogF.WriteLine("Color up yellow");
+                    ColorUp(se, Color.Yellow);
+                }
 
-		void highlightLostColony()
-		{
+                TechLevels ptl = LostColonyCheck(se.ParentEntity);
 
-		}
+                if (ptl != TechLevels.None)
+                {
+                    if (ptl == TechLevels.ColonizationAge || ptl == TechLevels.HyperspaceRevolution)
+                    {
+                        se.ParentEntity.seColor = Color.Goldenrod;
+                    }
+                    else
+                    {
+                        se.ParentEntity.seColor = Color.Orange;
+                    }
+                    
+                }
+            }
+
+            foreach(SystemEntity cEntity in se.ChildEntities)
+            {
+                LostColonySearch(cEntity);
+            }
+        }
+        static TechLevels LostColonyCheck(SystemEntity se)
+        {
+            if (se.EntityType == EntityTypes.Civilization)
+            {
+                Civilization civ = (Civilization)se;
+
+                if (civ.CivType == CivilizationTypes.Lost)
+                {
+                    return civ.CivilizationTechLevel;
+                }
+            }
+            return TechLevels.None;
+        }
+
+
+        static void ColorAll(SystemEntity se, Color c) //This will color this node and all nodes below this node a certain color
+        {
+            ColorOne(se, c);
+
+            foreach(SystemEntity cse in se.ChildEntities)
+            {
+                ColorAll(cse, c);
+            }
+        }
+        static void ColorOne(SystemEntity se, Color c) //This will color only this node a certain color
+        {
+            se.seColor = c;
+        }
+        static void ColorUp(SystemEntity se, Color c) //This will color this node and all of it's parent nodes (except the root node) a certain color
+        {
+            LogF.WriteLine("Color Up");
+            if (se.EntityType == EntityTypes.StarSystem) return;
+
+            ColorOne(se, c);
+
+            ColorUp(se.ParentEntity, c);
+        }
 	}
 }

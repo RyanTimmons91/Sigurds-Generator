@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\users\RyanT\Dropbox\Public\SoftwareUpdates\StarSystemGenerator\Publish\</PublishUrl>
+    <PublishUrl>C:\Users\storm\Dropbox\Public\SoftwareUpdates\StarSystemGenerator\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,9 +23,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://dl.dropboxusercontent.com/u/9690967/SoftwareUpdates/StarSystemGenerator/Publish/</InstallUrl>
-    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationRevision>39</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -67,7 +68,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Sun_Icon_256.ico</ApplicationIcon>
@@ -240,11 +241,23 @@
     <Compile Include="Forms\SpecialGens\VehicleWeapon.Designer.cs">
       <DependentUpon>VehicleWeapon.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingAnimationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingAnimationForm.Designer.cs">
+      <DependentUpon>LoadingAnimationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogF.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LogF.Designer.cs">
       <DependentUpon>LogF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialWeightCost.cs" />
     <Compile Include="Program.cs" />
@@ -324,11 +337,17 @@
     <EmbeddedResource Include="Forms\SpecialGens\VehicleWeapon.resx">
       <DependentUpon>VehicleWeapon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoadingAnimationForm.resx">
+      <DependentUpon>LoadingAnimationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogF.dje.resx">
       <DependentUpon>LogF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogF.resx">
       <DependentUpon>LogF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -356,7 +375,9 @@
     <None Include="StarSystemGeneratorV2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -378,7 +399,18 @@
   <ItemGroup>
     <Content Include="Sun_Icon_256.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PublishFile Include="dje\Sigurds Generator.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

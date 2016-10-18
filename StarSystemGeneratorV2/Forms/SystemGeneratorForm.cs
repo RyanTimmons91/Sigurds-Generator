@@ -20,6 +20,8 @@ namespace StarSystemGeneratorV2
 	{
 		internal static DiceRollerForm DiceRollerFormObject = new DiceRollerForm();
 
+		DiceHelper DH = new DiceHelper();
+
 		Version v;
 
 		public SystemGeneratorForm()
@@ -47,6 +49,8 @@ namespace StarSystemGeneratorV2
 			int treeNodeNumber = _systemTreeView.Nodes.Add(GeneratedSystem.Node.Node);
 			_systemTreeView.SelectedNode = _systemTreeView.Nodes[treeNodeNumber];
 			GeneratedSystem.Colorize();
+
+			_encounterCheck.Text = DH.D12().ToString();
 		}
 
 		//Actions
@@ -215,24 +219,6 @@ namespace StarSystemGeneratorV2
 			//Apply current Colors
 			SystemEntity.HighlightType = highlightTypes;
 			UpdateHighlighting();
-
-
-			//StarSystem[] SS = new StarSystem[_systemTreeView.Nodes.Count];
-
-			//for(int i = 0; i < SS.Length; i++)
-			//{
-			//	NodeObject n = (NodeObject)_systemTreeView.Nodes[i].Tag;
-			//	SS[i] = (StarSystem)n.BaseEntity;
-			//}
-
-			//ClearSystemInfo();
-			//ClearSystemList();
-
-			//foreach(StarSystem ss in SS)
-			//{
-			//	_systemTreeView.Nodes.Add(ss.Node.Node);
-			//	ss.Colorize();
-			//}
 		}
 		void UpdateHighlighting()
 		{
@@ -252,9 +238,14 @@ namespace StarSystemGeneratorV2
 
 		private void SystemGeneratorForm_Load(object sender, EventArgs e)
 		{
-#if !DEBUG
-			logToolStripMenuItem.Visible = false;
-#endif
+
+			
+
+		}
+
+		private void testToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new LoadingAnimationForm().Show();
 		}
 	}
 }
